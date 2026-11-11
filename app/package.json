@@ -1,0 +1,13 @@
+{
+  "name": "kage",
+  "productName": "Kage",
+  "version": "1.1.0",
+  "description": "Kage – El camino del ninja",
+  "main": "main.js",
+  "author": "Marius Pop",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": []
+}

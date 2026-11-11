@@ -1,0 +1,9 @@
+{
+  "version": "1.1.0",
+  "file": "game/index.html",
+  "sha256": "8bb5dac4c49063de8c4cbe7f92beae39f660f4568d23c50dd02ae080493443ef",
+  "minShell": 1,
+  "notes": [
+    "Actualizaciones automáticas: a partir de ahora el juego se actualiza solo al abrirlo"
+  ]
+}
