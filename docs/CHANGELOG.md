@@ -1,5 +1,8 @@
 # Historial de versiones
 
+## 1.7.2
+- Barra de desplazamiento de las notas del parche con el estilo del juego: fina, sin flechas ni fondo, degradado dorado-rojo (`::-webkit-scrollbar`; en Firefox `scrollbar-color`).
+
 ## 1.7.1
 - Pantalla de inicio: las notas del parche salen **encima** de "La leyenda de Kage" en una misma columna (`#tside`), sin taparla; si no caben, las notas tienen su propia barra de desplazamiento.
 

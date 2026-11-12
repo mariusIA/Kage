@@ -1,9 +1,9 @@
 {
-  "version": "1.7.1",
+  "version": "1.7.2",
   "file": "game/index.html",
-  "sha256": "5f5051e35507061050b0cc82232bbc2abd1878aa109b50de2b7eb2456fc3d9a9",
+  "sha256": "4e11b036dff1937f6e47f86b31d4ef72a918b361b2a1f6d2b19bac11b7b38c8e",
   "minShell": 1,
   "notes": [
-    "Las notas del parche salen encima de la leyenda de Kage, sin taparla"
+    "La barra para desplazarse por las notas del parche va a juego con el estilo del juego"
   ]
 }
