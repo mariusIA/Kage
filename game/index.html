@@ -377,7 +377,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.5.2</div>
+  <div id="tver">v1.5.3</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -1218,7 +1218,7 @@ function damage(e,amt,kb,noCrit){
   if(e.elite||e.T.boss)amt*=1+0.08*mLv('caza');
   if(SRC==='ult')amt*=0.6+0.4*Math.min(1,gt()/450);
   if(!e.lamp){const k=SRC||'otros';S.dmgBy[k]=(S.dmgBy[k]||0)+Math.min(amt,Math.max(0,e.hp))}
-  e.hp-=amt;e.flash=0.08;
+  e.hp-=amt;if(!(e.flashCd>S.t)){e.flash=SRC==='knives'?0.05:0.08;e.flashCd=S.t+(SRC==='knives'?0.45:0.2)}
   if(!e.lamp&&OPT().num){const o=OPT();let m=null;if(o.numGroup&&!crit){m=e._tx;if(m&&(m.life<0.3||m.crit||!S.txt.includes(m)))m=null}
     if(m){m.v+=Math.round(amt);m.life=0.6;m.pop=0.12;m.n=(m.n||1)+1}else if(S.txt.length<110){const t={x:e.x+rnd(-8,8),y:e.y,z:e.r,v:Math.round(amt),life:crit?0.9:0.6,crit,pop:crit?0.2:0.1};S.txt.push(t);if(!crit)e._tx=t}}
   if(kb&&!e.T.boss&&!e.T.heavy&&!e.lamp){const dx=e.x-S.p.x,dy=e.y-S.p.y,d=Math.hypot(dx,dy)||1;e.x+=dx/d*5*kb;e.y+=dy/d*5*kb}
@@ -2012,7 +2012,7 @@ function drawWeather(dt){
     if(S){ctx.globalCompositeOperation='lighter';
       const glow=(x,y,r,c)=>{const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2)};
       for(const e of S.en)if(e.lamp){const q=iso(e.x,e.y);if(inView(q[0],q[1],120))glow(q[0],q[1]-20,110,'rgba(255,150,60,.35)')}
-      for(const it of S.items){if(it.kind!=='xp')continue;const q=iso(it.x,it.y);if(!inView(q[0],q[1],20))continue;const G=it.v>=10?XPC[2]:it.v>=3?XPC[1]:XPC[0],sz=it.v>=10?10:it.v>=3?8:7;ctx.fillStyle=G[3]+'.45)';ctx.beginPath();ctx.arc(q[0],q[1]-sz-4,sz+4,0,TAU);ctx.fill();ctx.fillStyle=G[3]+'.18)';ctx.beginPath();ctx.arc(q[0],q[1]-sz-4,sz+11,0,TAU);ctx.fill()}
+      for(const it of S.items){if(it.kind!=='xp')continue;const q=iso(it.x,it.y);if(!inView(q[0],q[1],20))continue;const G=it.v>=10?XPC[2]:it.v>=3?XPC[1]:XPC[0],sz=it.v>=10?10:it.v>=3?8:7;ctx.fillStyle=G[3]+'.2)';ctx.beginPath();ctx.arc(q[0],q[1]-sz-4,sz+2,0,TAU);ctx.fill()}
       for(const o of S.visObs)if(o.type==='house'&&o.v<0.5){const q=iso(o.x,o.y);if(inView(q[0],q[1],150))glow(q[0],q[1]-10,120,'rgba(255,190,90,.22)')}
       const pq=iso(S.p.x,S.p.y);glow(pq[0],pq[1]-14,160,'rgba(120,140,200,.18)');ctx.globalCompositeOperation='source-over'}}
   if(!wOn)return;
@@ -2068,11 +2068,11 @@ function render(dt){
   for(const it of S.items){const q=iso(it.x,it.y);if(!inView(q[0],q[1],20))continue;const x=q[0],y=q[1];
     if(it.kind==='xp'){const big=it.v>=10,mid=it.v>=3,s=big?10:mid?8:7,bo=Math.sin(S.t*4+(it.bob||0))*2,yy=y-s-4+bo,G=big?XPC[2]:mid?XPC[1]:XPC[0],pu=0.7+0.3*Math.sin(S.t*6+(it.bob||0));
       ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(x,y,s*0.7,s*0.3,0,0,TAU);ctx.fill();
-      ctx.fillStyle=G[3]+(0.22+0.18*pu)+')';ctx.beginPath();ctx.arc(x,yy,s+5,0,TAU);ctx.fill();
+      ctx.fillStyle=G[3]+(0.08+0.06*pu)+')';ctx.beginPath();ctx.arc(x,yy,s+3,0,TAU);ctx.fill();
       ctx.beginPath();ctx.moveTo(x,yy-s);ctx.lineTo(x+s*.72,yy);ctx.lineTo(x,yy+s);ctx.lineTo(x-s*.72,yy);ctx.closePath();ctx.lineWidth=3;ctx.strokeStyle='#07080c';ctx.stroke();ctx.fillStyle=G[0];ctx.fill();
       ctx.fillStyle=G[1];ctx.beginPath();ctx.moveTo(x,yy-s);ctx.lineTo(x-s*.72,yy);ctx.lineTo(x,yy+s);ctx.closePath();ctx.fill();
       ctx.fillStyle=G[2];ctx.beginPath();ctx.moveTo(x,yy-s+2);ctx.lineTo(x-s*.35,yy-1);ctx.lineTo(x,yy-1);ctx.closePath();ctx.fill();
-      if(pu>0.93){ctx.fillStyle='#fff';ctx.fillRect(x+s*0.3-1,yy-s*0.5-3,2,6);ctx.fillRect(x+s*0.3-3,yy-s*0.5-1,6,2)}continue}
+      if(pu>0.985){ctx.fillStyle='rgba(255,255,255,.8)';ctx.fillRect(x+s*0.3-1,yy-s*0.5-3,2,6);ctx.fillRect(x+s*0.3-3,yy-s*0.5-1,6,2)}continue}
     const by=Math.sin(S.t*4+it.bob)*3-10;
     if(it.kind==='coin'){circle(x,y+by+4,5);ctx.fillStyle='#ffd23a';ctx.fill();ctx.fillStyle='#b8901a';ctx.fillRect(x-1,y+by+1,2,6);continue}
     ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(x,y,11,5,0,0,TAU);ctx.fill();
@@ -2101,10 +2101,10 @@ function render(dt){
   for(const b of S.pr){const q=iso(b.x,b.y);if(!inView(q[0],q[1],40))continue;const x=q[0],y=q[1]-16;
     if(b.kind==='magic'||b.kind==='arcane'){const ar=b.kind==='arcane';if(ar){circle(x,y,b.r+5);ctx.fillStyle='rgba(200,140,255,.3)';ctx.fill()}drawStar(x,y,b.r+3,S.t*25+b.rot,ar?'#e2c4ff':'#cfd6e0')}
     else if(b.kind==='knife'){ctx.save();ctx.translate(x,y);ctx.rotate(scrAng(b.vx,b.vy));ctx.fillStyle='#dfe6ee';ctx.beginPath();ctx.moveTo(14,0);ctx.lineTo(2,-4);ctx.lineTo(2,4);ctx.closePath();ctx.fill();ctx.fillStyle='#3a3a46';ctx.fillRect(-8,-1.5,10,3);ctx.strokeStyle='#cfd6e0';ctx.lineWidth=1.5;circle(-11,0,3);ctx.stroke();ctx.restore()}
-    else if(b.kind==='axe'){const sp=b.big?SPR.kamaE:SPR.kama,k=b.r/11*(b.big?0.6:0.8);
+    else if(b.kind==='axe'){const sp=b.big?SPR.kamaE:SPR.kama,k=b.r/11*(b.big?0.48:0.64);
       b.tr=b.tr||[];b.tr.push([b.x,b.y,b.rot]);if(b.tr.length>(b.big?7:5))b.tr.shift();
       for(let j=0;j<b.tr.length-1;j++){const t=b.tr[j],tq=iso(t[0],t[1]);ctx.save();ctx.translate(tq[0],tq[1]-16);ctx.rotate(t[2]);ctx.scale(k,k);ctx.globalAlpha=(j+1)/b.tr.length*(b.big?0.35:0.22);ctx.drawImage(b.big?sp.c:sp.wc,-sp.w/2,-sp.h/2);ctx.restore()}
-      if(b.big){const g=ctx.createRadialGradient(x,y,0,x,y,b.r*1.05);g.addColorStop(0,'rgba(255,170,60,.45)');g.addColorStop(1,'rgba(255,80,20,0)');ctx.fillStyle=g;ctx.fillRect(x-b.r*1.05,y-b.r*1.05,b.r*2.1,b.r*2.1)}
+      if(b.big){const g=ctx.createRadialGradient(x,y,0,x,y,b.r*0.85);g.addColorStop(0,'rgba(255,170,60,.45)');g.addColorStop(1,'rgba(255,80,20,0)');ctx.fillStyle=g;ctx.fillRect(x-b.r*0.85,y-b.r*0.85,b.r*1.7,b.r*1.7)}
       ctx.save();ctx.translate(x,y);ctx.rotate(b.rot);ctx.scale(k,k);ctx.drawImage(sp.c,-sp.w/2,-sp.h/2);ctx.restore()}}
   for(const b of S.ep){const q=iso(b.x,b.y);if(!inView(q[0],q[1],30))continue;const x=q[0],y=q[1]-16;
     {const t=iso(b.x-b.vx*0.09,b.y-b.vy*0.09),gc=b.kind==='ice'?'120,200,255':b.kind==='soul'?'190,110,255':'255,70,50';ctx.strokeStyle=`rgba(${gc},.6)`;ctx.lineWidth=Math.max(4,b.r*1.1);ctx.lineCap='round';ctx.beginPath();ctx.moveTo(t[0],t[1]-16);ctx.lineTo(x,y);ctx.stroke();
@@ -2212,14 +2212,14 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.5.2';
+const GAME_VERSION='1.5.3';
 const PATCH={
-  nuevo:['Al pulsar Imposible (bloqueado) ves qué personajes ya han ganado en Difícil y cuáles te faltan'],
-  fix:['El objeto que cura ahora es un corazón (antes onigiri)',
-    'Los rayos de Raijin caen sobre los enemigos más cercanos en vez de al azar'],
+  nuevo:[],
+  fix:['Los enemigos ya no se quedan blancos al recibir muchos golpes seguidos (sobre todo con la Lluvia de Kunai)',
+    'La Kama se ve más pequeña, normal y evolucionada',
+    'Los cristales de experiencia brillan menos'],
   buff:[],
-  nerf:['Makibishi y Campo de Púas: un 25% menos de daño',
-    'Rayo y Furia de Raijin: un 15% menos de daño']
+  nerf:[]
 };
 const PATCH_CAT=[['nuevo','NOVEDADES'],['fix','CORRECCIONES'],['buff','BUFFS'],['nerf','NERFS']];
 function renderPatch(){$('tp_v').textContent='v'+GAME_VERSION;$('tp_body').innerHTML=PATCH_CAT.filter(([k])=>PATCH[k]&&PATCH[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${PATCH[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')}

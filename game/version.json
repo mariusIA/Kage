@@ -1,12 +1,11 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.3",
   "file": "game/index.html",
-  "sha256": "e9020489aeb5b632f52f65a0d7e23daa2b76d02a4167e2d86e2e7b0932989d11",
+  "sha256": "d3d167cefa479755968e498d27a692c5e6e584da77c314d666e89fb9ee24bc4b",
   "minShell": 1,
   "notes": [
-    "El objeto que cura ahora es un corazón",
-    "Makibishi y Campo de Púas hacen menos daño",
-    "Rayo y Furia de Raijin hacen menos daño y apuntan a los enemigos más cercanos",
-    "En Imposible bloqueado ves qué personajes te faltan"
+    "Los enemigos ya no se quedan blancos con muchos golpes seguidos",
+    "Kama más pequeña",
+    "Cristales de experiencia con menos brillo"
   ]
 }

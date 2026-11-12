@@ -24,7 +24,7 @@ El juego usa un tiempo escalado `gt() = S.t × 1,875`; los minutos de abajo son 
 - Experiencia ×0,66 sobre la base y curva de nivel más dura a partir del nivel 20 (`5 + nivel×6 + (nivel−20)×40`): la build completa llega hacia el **minuto 7–7:30**.
 
 ## HUD
-Arriba a la izquierda: nivel, **barra de vida** (con vida actual / máxima, verde → amarilla → roja) y debajo las armas, objetos y reliquias. Los proyectiles enemigos llevan brillo de color y estela para verse bien. Números de daño con contorno; los críticos son más grandes, naranjas y con "!"; opción en Ajustes → Interfaz para agrupar golpes seguidos en un solo número. Los cristales de experiencia son azules (1), verdes (3+) y rojos (10+), con contorno y halo; en los mapas de noche brillan.
+Arriba a la izquierda: nivel, **barra de vida** (con vida actual / máxima, verde → amarilla → roja) y debajo las armas, objetos y reliquias. Los proyectiles enemigos llevan brillo de color y estela para verse bien. Números de daño con contorno; los críticos son más grandes, naranjas y con "!"; opción en Ajustes → Interfaz para agrupar golpes seguidos en un solo número. Los cristales de experiencia son azules (1), verdes (3+) y rojos (10+), con contorno y un halo suave; en los mapas de noche brillan un poco.
 
 ## Subir de nivel
 Cada nivel ofrece 3 mejoras (4 con suerte): armas nuevas o subir nivel, objetos pasivos. Máximo 6 armas y 6 objetos, nivel 5 cada uno.

@@ -1,5 +1,10 @@
 # Historial de versiones
 
+## 1.5.3
+- Cristales de experiencia con menos brillo (halo más suave y menos destellos).
+- Los enemigos ya no se quedan blancos al recibir muchos golpes seguidos (sobre todo con la Lluvia de Kunai): el destello de golpe tiene un tiempo de espera.
+- Kama más pequeña (normal y evolucionada).
+
 ## 1.5.2
 - Al pulsar Imposible (bloqueado) se ve qué personajes ya han ganado en Difícil y cuáles faltan.
 - El objeto que cura (antes onigiri) ahora es un **corazón**; textos actualizados.
