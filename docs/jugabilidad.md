@@ -1,7 +1,7 @@
 # Jugabilidad
 
 ## Pantalla de inicio
-Al abrir el juego tras una actualización sale la ventana **Notas del parche** (novedades, correcciones, buffs y nerfs). Al cerrarla aparece la introducción; se puede volver a abrir con el botón **Novedades** (abajo a la izquierda).
+Al abrir el juego tras una actualización sale la ventana **Notas del parche** (novedades, correcciones, buffs y nerfs). Si el jugador viene de una versión antigua, salen **todas las versiones que se ha perdido**, una tras otra; si acaba de instalar el juego (sin progreso), no sale nada. El botón **Novedades** enseña el historial completo. Al cerrarla aparece la introducción; se puede volver a abrir con el botón **Novedades** (abajo a la izquierda).
 
 ## Cooperativo
 Se puede jugar online con hasta 3 amigos (4 jugadores), cada uno en su PC, desde el botón **Cooperativo** de la pantalla de inicio: ver [cooperativo.md](cooperativo.md).

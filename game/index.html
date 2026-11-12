@@ -266,7 +266,9 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 .path .pchoose{width:100%;font-size:9px;padding:8px;margin:4px 0 8px}
 #tpatch{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:min(400px,42vw);max-height:min(62vh,520px);overflow:auto;display:none;background:rgba(10,12,18,.55);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.5);border-left:6px solid var(--gold);border-radius:10px;padding:16px 20px 10px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:13.5px;line-height:1.45;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
 #tpatch h3{margin:0 0 10px;font-family:"Press Start 2P",monospace;font-size:12px;font-weight:400;color:var(--gold);text-shadow:0 2px 0 #000}#tpatch h3 span{color:#ff8a6a;font-size:10px}
-#tpatch .pg{margin:0 0 10px}#tpatch .pg h4{margin:0 0 4px;font-family:"Press Start 2P",monospace;font-size:9px;font-weight:400;letter-spacing:1px;display:inline-block;padding:4px 7px;border-radius:4px;color:#0b0d12}
+#tpatch .pg{margin:0 0 10px}
+#tpatch .tpn{margin:0 0 10px;font-size:13px;color:#ffe9a0}
+#tpatch .tpver{font-family:"Press Start 2P",monospace;font-size:10px;color:var(--cream);margin:14px 0 8px;padding-top:10px;border-top:1px solid rgba(255,210,60,.25)}#tpatch .tpver:first-of-type{margin-top:0;padding-top:0;border-top:0}#tpatch .pg h4{margin:0 0 4px;font-family:"Press Start 2P",monospace;font-size:9px;font-weight:400;letter-spacing:1px;display:inline-block;padding:4px 7px;border-radius:4px;color:#0b0d12}
 #tpatch .pg ul{margin:4px 0 0;padding-left:18px}#tpatch .pg li{margin:2px 0}
 #tpatch .pg.nuevo h4{background:#7be0ff}#tpatch .pg.fix h4{background:#ffd23a}#tpatch .pg.buff h4{background:#59e08a}#tpatch .pg.nerf h4{background:#ff6a6a}
 #tp_x{position:absolute;top:6px;right:8px;width:28px;height:28px;border:none;border-radius:6px;background:transparent;color:#cfc9b8;font-size:22px;line-height:26px;cursor:pointer}#tp_x:hover,#tp_x:focus{background:rgba(255,255,255,.1);color:var(--gold);outline:none}
@@ -416,7 +418,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.6.1</div>
+  <div id="tver">v1.6.2</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -2528,7 +2530,7 @@ function frame(now){
 // =============== PANTALLA DE INICIO ===============
 let titleOn=false;
 function hasProgress(){const st=SAVE.stats||{};return (st.runs||0)>0||(SAVE.gold||0)>0||Object.keys(SAVE.shop||{}).some(k=>SAVE.shop[k]>0)}
-function showTitle(){titleOn=true;setTimeout(()=>{try{if(SAVE.seenPatch!==GAME_VERSION&&hasProgress())showPatch();else{if(!hasProgress())SAVE.seenPatch=GAME_VERSION;$('tpatch').style.display='none';$('tp_open').style.display='block'}}catch(e){}},0);setTimeout(()=>{try{showUpd()}catch(e){}},400);S=null;$('menu').style.display='none';for(const id of['gear','mini','skills','touch','hud','build','bossbar','mission_hud','end'])$(id).style.display='none';
+function showTitle(){titleOn=true;setTimeout(()=>{try{if(SAVE.seenPatch!==GAME_VERSION&&hasProgress()&&unseenPatches().length)showPatch(unseenPatches());else{if(!hasProgress())SAVE.seenPatch=GAME_VERSION;$('tpatch').style.display='none';$('tp_open').style.display='block'}}catch(e){}},0);setTimeout(()=>{try{showUpd()}catch(e){}},400);S=null;$('menu').style.display='none';for(const id of['gear','mini','skills','touch','hud','build','bossbar','mission_hud','end'])$(id).style.display='none';
   $('mute').style.display='block';$('t_cont').style.display=hasProgress()?'block':'none';$('title').style.display='block';setTimeout(()=>{const b=hasProgress()?$('t_cont'):$('t_new');try{b.focus({preventScroll:true})}catch(e){}},30)}
 function hideTitle(){titleOn=false;$('title').style.display='none'}
 function resetProgress(){const keep={opt:SAVE.opt,keys:SAVE.keys,muted:SAVE.muted};SAVE=Object.assign(defaultSave(),keep);SAVE.v=SAVE_VER;save();KBC=loadKB()}
@@ -2575,20 +2577,48 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.6.1';
-const PATCH={
-  nuevo:['El cooperativo ya es de hasta 4 jugadores: la sala tiene 4 puestos y la partida empieza cuando todos están listos',
+const GAME_VERSION='1.6.2';
+// Historial de notas, de la más nueva a la más antigua. Quien actualiza desde una versión vieja ve todas
+// las que se ha perdido; quien instala el juego de cero no ve ninguna (ver showTitle).
+const PATCHES=[
+  {v:'1.6.2',nuevo:['Si vuelves después de varias actualizaciones, aquí verás todo lo que te has perdido, versión a versión. El botón Novedades enseña el historial completo']},
+  {v:'1.6.1',nuevo:['El cooperativo ya es de hasta 4 jugadores: la sala tiene 4 puestos y la partida empieza cuando todos están listos',
     'Cada jugador puede ponerse su nombre en la sala; se ve encima de su ninja durante la partida'],
-  fix:[],
-  buff:[],
-  nerf:['Cooperativo más difícil, y más cuantos más seáis: por cada jugador extra, los enemigos tienen +50% de vida, los jefes +60%, salen +40% más enemigos y pegan +10%']
-};
+   nerf:['Cooperativo más difícil, y más cuantos más seáis: por cada jugador extra, los enemigos tienen +50% de vida, los jefes +60%, salen +40% más enemigos y pegan +10%']},
+  {v:'1.6.0',nuevo:['Modo cooperativo online, cada uno desde su PC: botón Cooperativo en la pantalla de inicio, crea una sala y pásale el código a tu amigo',
+    'La experiencia es compartida, pero cada uno elige sus propias mejoras y abre sus propios cofres',
+    'Si caes, tu compañero puede revivirte quedándose 3 segundos a tu lado',
+    'Todos ganan el oro de la partida y, si ganáis, desbloqueáis el siguiente personaje']},
+  {v:'1.5.3',fix:['Los enemigos ya no se quedan blancos al recibir muchos golpes seguidos (sobre todo con la Lluvia de Kunai)','La Kama se ve más pequeña, normal y evolucionada','Los cristales de experiencia brillan menos']},
+  {v:'1.5.2',nuevo:['Al pulsar Imposible ves qué personajes te faltan por ganar en Difícil'],fix:['El onigiri ahora es un corazón'],
+   nerf:['Makibishi y Campo de Púas hacen un 25% menos de daño','Rayo y Furia de Raijin hacen un 15% menos de daño, pero los rayos caen sobre los enemigos más cercanos']},
+  {v:'1.5.1',buff:['Fácil es más fácil: menos enemigos, con menos vida y que pegan menos']},
+  {v:'1.5.0',nuevo:['Armas nuevas: Katana y Bomba de humo, cada una con su evolución','Eventos aleatorios: mercader ambulante, santuario y luna de sangre',
+    'Maldiciones antes de la partida: más difícil a cambio de más oro','Pestañas Pergaminos (guía de evoluciones) y Bestiario','Desafíos por personaje que desbloquean trajes',
+    'Resumen de la build en la pausa y aviso cuando un arma puede evolucionar','Logros nuevos: Erudito yokai, Exterminador y Maldito','Ventana de notas del parche como esta'],
+   fix:['Números de daño más claros','Cristales de experiencia más visibles en todos los mapas','Las cartas de reliquia se distinguen de las demás','Tarjetas de personaje rediseñadas y botón de compra nuevo','Los nodos de maestría se llaman como lo que dan'],
+   nerf:['Las mejoras de la tienda son más caras: 8000 de oro en total para subir cada una al máximo','Maestrías: ahora se juega con una sola senda elegida']},
+  {v:'1.4.0',nuevo:['Barra de vida en el HUD, entre el nivel y los objetos'],fix:['Los disparos de los enemigos se ven mucho mejor'],nerf:['La build completa llega hacia el minuto 7 (antes sobre el 3:30)']},
+  {v:'1.3.0',fix:['La partida también se guarda en un archivo y al cerrar el juego, para no perder el progreso','"Nueva partida" ya no borra el progreso por error: pide confirmarlo dos veces']},
+  {v:'1.2.2',nuevo:['Con la build completa los cofres se convierten directamente en oro']},
+  {v:'1.2.1',nuevo:['También ganas resistiendo 1:30 contra el Shinigami'],fix:['Salir en modo infinito cuenta como victoria']},
+  {v:'1.2.0',nuevo:['Las partidas duran 8 minutos (antes 10)'],nerf:['Los ninjas son un poco más lentos','Menos cofres con la build completa']},
+  {v:'1.1.2',nuevo:['La leyenda de Kage: la historia del juego en la pantalla de inicio']},
+  {v:'1.1.1',fix:['El ninja se mueve igual de rápido en todas las direcciones']},
+  {v:'1.1.0',nuevo:['El juego se actualiza solo']}
+];
+const PATCH=PATCHES[0];
 const PATCH_CAT=[['nuevo','NOVEDADES'],['fix','CORRECCIONES'],['buff','BUFFS'],['nerf','NERFS']];
-function renderPatch(){$('tp_v').textContent='v'+GAME_VERSION;$('tp_body').innerHTML=PATCH_CAT.filter(([k])=>PATCH[k]&&PATCH[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${PATCH[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')}
-function showPatch(){renderPatch();$('tpatch').style.display='block';$('tintro').style.display='none';$('ti_open').style.display='none'}
+function vcmp(a,b){const x=String(a||'0').split('.').map(n=>parseInt(n)||0),y=String(b||'0').split('.').map(n=>parseInt(n)||0);for(let i=0;i<3;i++){if((x[i]||0)!==(y[i]||0))return(x[i]||0)-(y[i]||0)}return 0}
+// versiones que el jugador aún no ha visto (sin seenPatch: todas)
+function unseenPatches(){const sp=SAVE.seenPatch;return PATCHES.filter(P=>!sp||vcmp(P.v,sp)>0)}
+function renderPatch(list,hist){list=list&&list.length?list:PATCHES;const many=list.length>1;
+  $('tp_v').textContent=many?`v${list[list.length-1].v} a v${list[0].v}`:'v'+list[0].v;
+  $('tp_body').innerHTML=(many?`<p class="tpn">${hist?'Historial de cambios del juego, de lo más nuevo a lo más antiguo:':`Te has perdido ${list.length} actualizaciones. Esto es todo lo que ha cambiado:`}</p>`:'')+list.map(P=>(many?`<div class="tpver">Versión ${P.v}</div>`:'')+PATCH_CAT.filter(([k])=>P[k]&&P[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${P[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')).join('')}
+function showPatch(list,hist){renderPatch(list,hist);$('tpatch').style.display='block';$('tp_body').scrollTop=0;$('tpatch').scrollTop=0;$('tintro').style.display='none';$('ti_open').style.display='none'}
 function closePatch(){$('tpatch').style.display='none';SAVE.seenPatch=GAME_VERSION;save();$('tintro').style.display='block';$('ti_open').style.display='none';$('tp_open').style.display='block'}
 $('tp_x').onclick=()=>{sfx('click');closePatch()};
-$('tp_open').onclick=()=>{sfx('click');showPatch()};
+$('tp_open').onclick=()=>{sfx('click');showPatch(PATCHES,true)};
 
 $('ti_x').onclick=()=>{sfx('click');$('tintro').style.display='none';$('ti_open').style.display='block'};
 $('ti_open').onclick=()=>{sfx('click');$('tintro').style.display='block';$('ti_open').style.display='none'};

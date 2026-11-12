@@ -1,5 +1,9 @@
 # Historial de versiones
 
+## 1.6.2
+- Notas del parche acumuladas: quien actualiza desde una versión antigua ve todas las versiones que se ha perdido (desde su `SAVE.seenPatch`; si no tiene, todas). Quien instala de cero no ve ninguna. El botón **Novedades** muestra el historial completo.
+- Las notas pasan a `PATCHES` (lista de versiones, la más nueva primero); `PATCH` es `PATCHES[0]`.
+
 ## 1.6.1
 - Cooperativo de **hasta 4 jugadores**: sala con 4 puestos, todos los invitados tienen que estar listos para empezar, revive cualquier compañero y si alguien se desconecta los demás siguen.
 - Nombre de jugador en la sala (`SAVE.name`), visible en los puestos, encima de cada ninja y en los avisos.

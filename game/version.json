@@ -1,11 +1,10 @@
 {
-  "version": "1.6.1",
+  "version": "1.6.2",
   "file": "game/index.html",
-  "sha256": "34a84041761d9970cf88e575dd8ccfa4189690075d5dab87952fa019b318d480",
+  "sha256": "be6f996b4b0628131a653946f125ed09b762bf068a716506d7f8cef6b44465ee",
   "minShell": 1,
   "notes": [
-    "Cooperativo de hasta 4 jugadores",
-    "Pon tu nombre en la sala: se ve encima de tu ninja en la partida",
-    "El cooperativo es más difícil y sube con cada jugador"
+    "Si vuelves después de varias actualizaciones, las notas del parche te enseñan todo lo que te has perdido",
+    "El botón Novedades muestra el historial completo de cambios"
   ]
 }

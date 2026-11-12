@@ -18,7 +18,7 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 ### Publishing a game update (the usual case)
 1. Edit `game/index.html`.
 2. Update the visible version on the title screen: `<div id="tver">vX.Y.Z</div>`.
-   Also raise `GAME_VERSION` and write the in-game patch notes in `PATCH` (section NOTAS DEL PARCHE), split into `nuevo` / `fix` / `buff` / `nerf` (Spanish, short).
+   Also raise `GAME_VERSION` and **add a new entry at the top of `PATCHES`** (section NOTAS DEL PARCHE) with `v` and the notes split into `nuevo` / `fix` / `buff` / `nerf` (Spanish, short). Never delete old entries: players coming from old versions see every version they missed.
 3. Update `game/version.json`: raise `version`, set `sha256` from `sha256sum game/index.html`, write the `notes` (short, in Spanish), and keep `minShell: 1` if the shell doesn't change.
 4. Update the affected files in `docs/` and add the `docs/CHANGELOG.md` entry.
 5. Commit to `main` and push. Players get it the next time they open the app, with a "¡Nueva versión disponible!" dialog. GitHub's raw cache can take about 5 minutes.

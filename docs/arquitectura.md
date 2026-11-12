@@ -25,7 +25,7 @@ Secciones del script (buscar `// =============== NOMBRE`):
 | DIBUJO | Render isométrico ordenado por profundidad |
 | PANTALLA DE INICIO | `showTitle()`, introducción, diálogo de Nueva partida |
 | ACTUALIZACIONES | Diálogo "Nueva versión disponible" (solo en la app) |
-| NOTAS DEL PARCHE | `GAME_VERSION`, `PATCH` (nuevo/fix/buff/nerf) y ventana de la pantalla de inicio |
+| NOTAS DEL PARCHE | `GAME_VERSION`, `PATCHES` (historial, la versión más nueva primero; `PATCH = PATCHES[0]`), `unseenPatches()` (las posteriores a `SAVE.seenPatch`), `vcmp()` y ventana de la pantalla de inicio |
 | COOPERATIVO: NÚCLEO | `PF`, `useP()`, `coopAlive()`, `coopTarget()`, `coopHurt()`, `downStep()`, `coopLevelTick()` |
 | COOPERATIVO ONLINE | `NET` (hasta 4 jugadores: `NET.guests`, `sendP()`), sala (`openCoop`, `coopHost`, `coopJoin`, `renderRoom`, `roomSync`), `netSnap()`, `guestSnap()`, `guestUpdate()`, `guestEnd()` (ver [cooperativo.md](cooperativo.md)) |
 | EVENTOS ALEATORIOS | `evTick()`, mercader (`openMerchant`), santuario (`S.shrineB`), luna de sangre (`S.bloodT`) |
