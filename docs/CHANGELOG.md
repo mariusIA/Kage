@@ -1,5 +1,11 @@
 # Historial de versiones
 
+## 1.5.2
+- Al pulsar Imposible (bloqueado) se ve qué personajes ya han ganado en Difícil y cuáles faltan.
+- El objeto que cura (antes onigiri) ahora es un **corazón**; textos actualizados.
+- Makibishi / Campo de Púas: ~25% menos daño.
+- Rayo / Furia de Raijin: ~15% menos daño y los rayos caen sobre los enemigos **más cercanos** (antes al azar).
+
 ## 1.5.1
 - Fácil más fácil: −20% de enemigos, −25% de vida, −30% de daño y jefes con −20% de vida.
 

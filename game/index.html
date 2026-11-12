@@ -318,6 +318,11 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 .chr .cskin{margin-top:6px;font-family:"Press Start 2P",monospace;font-size:7px;padding:5px 8px;border-radius:4px;border:1px solid var(--gold);color:var(--gold);cursor:pointer;background:rgba(255,210,60,.08)}
 .chr .cskin:hover{background:rgba(255,210,60,.2)}
 
+.implist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px auto 4px;max-width:760px}
+.imc{display:flex;align-items:center;gap:5px;font-size:12px;padding:4px 8px 4px 4px;border-radius:5px;background:var(--panel);border:1px solid #5a2a2a;color:#cfc9b8}
+.imc img{width:22px;height:24px;image-rendering:pixelated;filter:grayscale(1) brightness(.6)}.imc b{color:#ff6a6a;font-family:system-ui}
+.imc.ok{border-color:#2a6a3a;color:#fff}.imc.ok img{filter:none}.imc.ok b{color:#59e08a}
+
 #title{position:fixed;inset:0;display:none;z-index:8;background:linear-gradient(90deg,rgba(4,5,8,.78) 0%,rgba(4,5,8,.35) 38%,rgba(4,5,8,0) 60%),linear-gradient(0deg,rgba(4,5,8,.55),rgba(4,5,8,0) 35%)}
 #title .tname{position:absolute;top:9vh;left:0;right:0;text-align:center;font-family:"Press Start 2P",monospace;font-size:clamp(54px,11vw,128px);color:#f4f1e8;text-shadow:0 6px 0 #000,0 0 30px rgba(255,80,60,.5);letter-spacing:10px;margin:0}
 #title .tsub{position:absolute;top:calc(9vh + clamp(70px,13vw,150px));left:0;right:0;text-align:center;font-family:"Press Start 2P",monospace;font-size:clamp(11px,1.5vw,18px);color:#ff8a6a;letter-spacing:2px;text-shadow:0 2px 0 #000}
@@ -372,7 +377,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.5.1</div>
+  <div id="tver">v1.5.2</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -746,7 +751,7 @@ const CHARS=[
   {id:'tormenta',name:'Tormenta',belt:'#4fc26a',beltName:'verde',suit:'#2a2d3a',weapons:['bolt'],hp:90,might:1.25,haste:0.88,hab:'+25% de daño y ataca un 12% más rápido.'},
   {id:'berserker',name:'Berserker',belt:'#3f8fe8',beltName:'azul',suit:'#2a2d3a',weapons:['axe'],hp:130,spd:1.05,berserk:true,hab:'Furia: cuanta menos vida, más daño (hasta el doble).'},
   {id:'picara',name:'Pícara',belt:'#a45ae0',beltName:'morado',suit:'#2a2d3a',weapons:['knives'],hp:85,spd:1.12,crit:0.15,hab:'+15% de probabilidad de crítico y ágil.'},
-  {id:'sacerdotisa',name:'Sacerdotisa',belt:'#8a5a32',beltName:'marrón',suit:'#2a2d3a',weapons:['puddle'],hp:110,area:1.15,heal:2,regen:0.5,hab:'+15% de área y los onigiri curan el doble.'},
+  {id:'sacerdotisa',name:'Sacerdotisa',belt:'#8a5a32',beltName:'marrón',suit:'#2a2d3a',weapons:['puddle'],hp:110,area:1.15,heal:2,regen:0.5,hab:'+15% de área y los corazones curan el doble.'},
   {id:'errante',name:'Errante',belt:'#0a0a0e',beltName:'negro',suit:'#5a1f2a',weapons:'random2',hp:100,hab:'Empieza con dos armas al azar.'}
 ].map(c=>{c=Object.assign({hp:100,spd:1,might:1,haste:1,mag:1,xp:1,regen:0,armor:0,crit:0,area:1,heal:1,berserk:false},c);
   c.sprBase=ninjaSpr(c.suit,c.suit==='#2a2d3a'?'#3c4152':'#7a2f3c',c.belt);c.spr=c.sprBase;return c});
@@ -762,7 +767,7 @@ const CHAL={
   tormenta:{d:'Gana con la Furia de Raijin',ok:S=>S.wp.bolt&&S.wp.bolt.evo,skin:['Noche tormentosa','#262650','#3a3a78']},
   berserker:{d:'Gana tras pasar 60 s con menos del 30% de vida',ok:S=>(S.lowT||0)>=60,skin:['Sangre de oni','#6e1418','#93252a']},
   picara:{d:'Gana recibiendo 15 golpes o menos',ok:S=>(S.hits||0)<=15,skin:['Sombra violeta','#3a1850','#55286f']},
-  sacerdotisa:{d:'Gana sin comer ningún onigiri',ok:S=>!S.food,skin:['Hábito sagrado','#d8d0b8','#f0ead8']},
+  sacerdotisa:{d:'Gana sin coger ningún corazón',ok:S=>!S.food,skin:['Hábito sagrado','#d8d0b8','#f0ead8']},
   errante:{d:'Gana en Difícil o Imposible',ok:S=>S.dname==='dificil'||S.dname==='imposible',skin:['Vacío','#0e0e12','#26262e']}};
 function skinSpr(c){if(!c.sprAlt){const k=CHAL[c.id].skin;c.sprAlt=ninjaSpr(k[1],k[2],c.belt)}return c.sprAlt}
 function applySkins(){for(const c of CHARS)c.spr=(SAVE.skinOn||{})[c.id]&&(SAVE.skins||{})[c.id]?skinSpr(c):c.sprBase}
@@ -778,8 +783,8 @@ const WD={
   orbs:{name:'Hitodama',ic:'',evoName:'Kitsunebi',evoWith:'area',about:'Fuegos fatuos que giran a tu alrededor.',
     stat:(l,e)=>e?{n:8,dmg:30,R:125,size:13,spd:3.4}:{n:l+1,dmg:7+4*l,R:70+6*l,size:9,spd:2.8},
     info:s=>`${s.n} fuegos · daño ${s.dmg}`},
-  bolt:{name:'Rayo de Raijin',ic:'',evoName:'Furia de Raijin',evoWith:'luck',about:'Rayos sobre enemigos al azar, con daño en área.',
-    stat:(l,e)=>e?{cd:0.55,dmg:80,n:3,splash:90}:{cd:1.7-0.2*(l-1),dmg:25+15*(l-1),n:Math.ceil(l/2),splash:55},
+  bolt:{name:'Rayo de Raijin',ic:'',evoName:'Furia de Raijin',evoWith:'luck',about:'Rayos sobre los enemigos más cercanos, con daño en área.',
+    stat:(l,e)=>e?{cd:0.55,dmg:68,n:3,splash:90}:{cd:1.7-0.2*(l-1),dmg:21+13*(l-1),n:Math.ceil(l/2),splash:55},
     info:s=>`${s.n} rayo${s.n>1?'s':''} · daño ${s.dmg} · cada ${nf(s.cd)} s`},
   axe:{name:'Kama',ic:'',evoName:'Kama del Dragón',evoWith:'might',about:'Lanza hoces hacia arriba que caen y lo atraviesan todo.',
     stat:(l,e)=>e?{cd:0.9,dmg:60,n:4,size:22}:{cd:1.4-0.1*(l-1),dmg:20+8*(l-1),n:[1,2,2,3,3][l-1],size:11},
@@ -788,7 +793,7 @@ const WD={
     stat:(l,e)=>e?{cd:0.11,dmg:16,n:2,pierce:3}:{cd:0.55-0.05*(l-1),dmg:7+3*(l-1),n:1+Math.floor((l-1)/2),pierce:l>=4?2:1},
     info:s=>`${s.n} kunai · daño ${s.dmg}${s.pierce>1?' · atraviesa':''}`},
   puddle:{name:'Makibishi',ic:'',evoName:'Campo de Púas',evoWith:'vigor',about:'Siembra abrojos que dañan a quien los pise.',
-    stat:(l,e)=>e?{cd:1.8,dmg:18,n:4,r:85,dur:4}:{cd:3.2-0.25*(l-1),dmg:4+3*l,n:Math.ceil(l/2),r:40+6*l,dur:2+0.3*l},
+    stat:(l,e)=>e?{cd:1.8,dmg:13,n:4,r:85,dur:4}:{cd:3.2-0.25*(l-1),dmg:3+2.3*l,n:Math.ceil(l/2),r:40+6*l,dur:2+0.3*l},
     info:s=>`${s.n} zona${s.n>1?'s':''} de abrojos · daño ${s.dmg} · ${nf(s.dur)} s`},
   katana:{name:'Katana',ic:'',evoName:'Iai del Relámpago',evoWith:'luck',about:'Un tajo en arco delante de ti que corta a todo lo que pille.',
     stat:(l,e)=>e?{cd:0.75,dmg:75,R:165,arc:2.6,n:2}:{cd:1.35-0.1*(l-1),dmg:24+9*(l-1),R:100+9*l,arc:1.9,n:l>=4?2:1},
@@ -971,7 +976,7 @@ const PATHS=[
     {id:'piel',name:'Vida máxima',max:3,desc:l=>`+${10*l} de vida máxima`},
     {id:'temple',name:'Armadura',max:2,desc:l=>`−${l} de daño recibido por golpe`},
     {id:'regen',name:'Regeneración',max:3,desc:l=>`Recuperas ${nf(0.3*l)} de vida por segundo`},
-    {id:'aliento',name:'Curación de onigiri',max:3,desc:l=>`Los onigiri curan un ${15*l}% más`}],
+    {id:'aliento',name:'Curación de corazones',max:3,desc:l=>`Los corazones curan un ${15*l}% más`}],
     key:{id:'k_guardian',name:'Montaña inamovible',desc:'Al recibir daño eres invulnerable más tiempo y quien te golpea recibe daño de espinas, pero eres un 15% más lento.'}},
   {id:'sombra',ic:'',name:'Senda de la Sombra',style:'Movilidad',col:'#7be0ff',nodes:[
     {id:'pies',name:'Velocidad',max:3,desc:l=>`+${4*l}% de velocidad`},
@@ -1074,6 +1079,7 @@ const CURSES=[
   {k:'ciego',name:'Niebla espesa',desc:'Sin minimapa ni flechas de objetivos',b:0.15}];
 const curseOn=k=>!!(S&&S.curses&&S.curses[k]);
 function curseBonus(set){let b=0;for(const c of CURSES)if(set&&set[c.k])b+=c.b;return b}
+function impList(){const hwd=SAVE.hardWins||{};return`<div class="implist">${CHARS.map(c=>{const ok=!!hwd[c.id];return`<span class="imc${ok?' ok':''}" title="${ok?'Ganado en Difícil':'Te falta ganar en Difícil'}"><img src="${avatar(c)}" alt="">${SAVE.unlocked[c.id]?c.name:'???'}<b>${ok?'✓':'✗'}</b></span>`}).join('')}</div><div class="small">Te faltan: <b>${CHARS.filter(c=>!hwd[c.id]).map(c=>SAVE.unlocked[c.id]?c.name:'??? (bloqueado)').join(', ')||'ninguno'}</b></div>`}
 function renderCurses(){const box=$('curses');if(!box)return;SAVE.curses=SAVE.curses||{};const cb=curseBonus(SAVE.curses);
   box.innerHTML=CURSES.map(c=>`<button class="curse${SAVE.curses[c.k]?' on':''}" data-c="${c.k}" title="${c.desc}">${ICO('skull')}<b>${c.name}</b><small>${c.desc}</small><i>+${Math.round(c.b*100)}%</i></button>`).join('');
   $('cursesum').innerHTML=cb?`Maldiciones activas: <b style="color:#ff6a6a">+${Math.round(cb*100)}% de oro y de experiencia de maestría</b> (no se aplican en el reto diario)`:'Maldiciones: opcionales. Cada una pone la partida más difícil a cambio de más oro y experiencia de maestría.';
@@ -1276,8 +1282,8 @@ function updWeapons(dt){
     case'orbs':{w.ang=(w.ang||0)+s.spd*dt;const R=s.R*st.area,sz=s.size*st.area;
       for(let i=0;i<s.n;i++){const a=w.ang+i*TAU/s.n,ox=p.x+Math.cos(a)*R,oy=p.y+Math.sin(a)*R;
         query(ox,oy,sz+50,e=>{if(!e.dead&&e.orbHit<=0&&Math.hypot(e.x-ox,e.y-oy)<e.r+sz){e.orbHit=0.4;damage(e,s.dmg*st.might,1.5)}})}break}
-    case'bolt':w.tm-=dt;if(w.tm<=0){w.tm=s.cd*st.haste;const vis=S.en.filter(e=>!e.dead&&!e.lamp&&onScreen(e.x,e.y,-20));
-      for(let i=0;i<s.n&&vis.length;i++){const e=vis.splice(Math.random()*vis.length|0,1)[0],dm=s.dmg*st.might,ex=e.x,ey=e.y,sp=s.splash*st.area;
+    case'bolt':w.tm-=dt;if(w.tm<=0){w.tm=s.cd*st.haste;const vis=nearest(s.n).filter(e=>onScreen(e.x,e.y,-20));
+      for(let i=0;i<s.n&&vis.length;i++){const e=vis.shift(),dm=s.dmg*st.might,ex=e.x,ey=e.y,sp=s.splash*st.area;
         damage(e,dm,0);S.fx.push({k:'bolt',x:ex,y:ey,life:0.25,r:sp});query(ex,ey,sp+50,o=>{if(o!==e&&!o.dead&&Math.hypot(o.x-ex,o.y-ey)<sp+o.r)damage(o,dm*0.5,1)})}
       if(vis.length||s.n)sfx('bolt')}break;
     case'axe':w.tm-=dt;if(w.tm<=0){w.tm=s.cd*st.haste;for(let i=0;i<s.n;i++)S.pr.push({x:p.x,y:p.y,vx:rnd(-80,80)+(i-(s.n-1)/2)*95,vy:rnd(-590,-510),r:s.size*st.area,dmg:s.dmg*st.might,life:1.8,pierce:999,hit:new Set(),kind:'axe',rot:0,grav:true,big:w.evo,src:'axe'});sfx('throw')}break;
@@ -1428,7 +1434,7 @@ function evTick(dt){const g=gt(),p=S.p;
   if(v.life<=0){if(v.k==='merchant'&&!v.used)toast('El mercader se ha marchado');S.rev=null}}
 function merchCost(b){return Math.round(b*(1+gt()/600))}
 function openMerchant(){const full=buildDone();S.merch=[
-  {t:'heal',ic:ICO('heart'),nm:'Onigiri grande',ds:'Recuperas toda la vida.',c:merchCost(30)},
+  {t:'heal',ic:ICO('heart'),nm:'Corazón grande',ds:'Recuperas toda la vida.',c:merchCost(30)},
   {t:'lvl',ic:ICO('scroll'),nm:'Pergamino de saber',ds:'Subes un nivel al momento.',c:merchCost(60)},
   full?{t:'xpb',ic:ICO('coin'),nm:'Saco de oro',ds:'Inviertes y recuperas el doble al salir.',c:merchCost(50)}:{t:'chest',ic:`<img class="pi" src="${SPR.chest.c.toDataURL()}" alt="">`,nm:'Cofre sellado',ds:'Un cofre para elegir mejora.',c:merchCost(90)},
   {t:'ult',ic:ULTS[S.ch.id].ic,nm:'Té de concentración',ds:'Tu técnica especial se carga al 100%.',c:merchCost(45)}];
@@ -1670,7 +1676,7 @@ function optInfo(o){
     hint:`Evoluciona con ${PD[d.evoWith].ic} ${PD[d.evoWith].name} al nivel 5 + un cofre`}}
   if(o.t==='p'){const d=PD[o.k],l=S.pa[o.k]||0;const ws=Object.keys(WD).filter(k=>WD[k].evoWith===o.k&&S.wp[k]&&!S.wp[k].evo);
     return{ic:d.ic,nm:d.name,lv:l?`Nivel ${l+1}`:'Nuevo',ds:d.desc,hint:ws.length?`Sirve para evolucionar ${ws.map(k=>WD[k].ic+' '+WD[k].name).join(' y ')}`:''}}
-  if(o.t==='heal')return{ic:ICO('onigiri'),nm:'Onigiri',lv:'',ds:'Te cura 50 de vida',hint:''};
+  if(o.t==='heal')return{ic:ICO('heart'),nm:'Corazón',lv:'',ds:'Te cura 50 de vida',hint:''};
   return{ic:ICO('coin'),nm:'Bolsa de oro',lv:'',ds:'+10 de oro',hint:''};
 }
 function applyOpt(o){S.stDirty=true;
@@ -1796,7 +1802,7 @@ function renderMenu(){
   const hw=CHARS.filter(c=>(SAVE.hardWins||{})[c.id]).length;
   for(const k in DIFFS){const d=DIFFS[k],lock=k==='imposible'&&!impUnl(),b=document.createElement('button');b.className='tab diff d-'+k+(k===cur?' on':'');b.innerHTML=(lock?ICO('lock'):d.ic)+d.name;
     if(lock||(forced&&k!==forced))b.style.opacity='.5';
-    b.onclick=()=>{audioInit();sfx('click');if(lock){$('diffdesc').innerHTML=`${ICO('lock')} <b>Imposible</b>: gana una partida en Difícil con cada uno de los 8 personajes (${hw}/8).`;return}
+    b.onclick=()=>{audioInit();sfx('click');if(lock){$('diffdesc').innerHTML=`${ICO('lock')} <b>Imposible</b>: gana una partida en Difícil con cada uno de los 8 personajes (${hw}/8).`+impList();return}
       if(forced&&k!==forced){SAVE.map='bosque'}SAVE.diff=k;save();renderMenu()};db.appendChild(b)}
   $('diffdesc').innerHTML=DIFFS[cur].desc+(impUnl()?'':` <span class="small">(${ICO('lock')} Imposible: ${hw}/8)</span>`);
   const cm=selMap().id,mb=$('maps');mb.innerHTML='';let hint='';
@@ -2070,7 +2076,7 @@ function render(dt){
     const by=Math.sin(S.t*4+it.bob)*3-10;
     if(it.kind==='coin'){circle(x,y+by+4,5);ctx.fillStyle='#ffd23a';ctx.fill();ctx.fillStyle='#b8901a';ctx.fillRect(x-1,y+by+1,2,6);continue}
     ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(x,y,11,5,0,0,TAU);ctx.fill();
-    if(it.kind==='food')drawSpr(SPR.meat,x,y+by,1);
+    if(it.kind==='food'){const hs=ICSPR.heartP||(ICSPR.heartP=mk(ICONSD.heart[1],ICONSD.heart[0],2));const pu=1+0.08*Math.sin(S.t*6+it.bob);ctx.fillStyle='rgba(255,60,80,.25)';ctx.beginPath();ctx.arc(x,y+by-hs.h/2,hs.w*0.7*pu,0,TAU);ctx.fill();drawSpr(hs,x,y+by,pu)}
     else if(it.kind==='chest')drawSpr(SPR.chest,x,y+by,1);
     else drawSpr(ICSPR[it.kind==='magnet'?'magnet':it.kind==='bomb'?'bomb':it.kind==='scroll'?'scroll':'coin'],x,y+by,1)}
   try{drawEvents()}catch(e){}
@@ -2206,13 +2212,14 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.5.1';
+const GAME_VERSION='1.5.2';
 const PATCH={
-  nuevo:[],
-  fix:[],
-  buff:['Fácil es más fácil: un 20% menos de enemigos, con un 25% menos de vida y un 30% menos de daño',
-    'Fácil: los jefes tienen un 20% menos de vida'],
-  nerf:[]
+  nuevo:['Al pulsar Imposible (bloqueado) ves qué personajes ya han ganado en Difícil y cuáles te faltan'],
+  fix:['El objeto que cura ahora es un corazón (antes onigiri)',
+    'Los rayos de Raijin caen sobre los enemigos más cercanos en vez de al azar'],
+  buff:[],
+  nerf:['Makibishi y Campo de Púas: un 25% menos de daño',
+    'Rayo y Furia de Raijin: un 15% menos de daño']
 };
 const PATCH_CAT=[['nuevo','NOVEDADES'],['fix','CORRECCIONES'],['buff','BUFFS'],['nerf','NERFS']];
 function renderPatch(){$('tp_v').textContent='v'+GAME_VERSION;$('tp_body').innerHTML=PATCH_CAT.filter(([k])=>PATCH[k]&&PATCH[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${PATCH[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')}

@@ -1,10 +1,12 @@
 {
-  "version": "1.5.1",
+  "version": "1.5.2",
   "file": "game/index.html",
-  "sha256": "e1582becc589f69b50010c5b527e3b4009ec539f7c573f256df6ec1e1f8c311e",
+  "sha256": "e9020489aeb5b632f52f65a0d7e23daa2b76d02a4167e2d86e2e7b0932989d11",
   "minShell": 1,
   "notes": [
-    "Fácil más fácil: menos enemigos, con menos vida y que pegan menos",
-    "Fácil: los jefes tienen menos vida"
+    "El objeto que cura ahora es un corazón",
+    "Makibishi y Campo de Púas hacen menos daño",
+    "Rayo y Furia de Raijin hacen menos daño y apuntan a los enemigos más cercanos",
+    "En Imposible bloqueado ves qué personajes te faltan"
   ]
 }

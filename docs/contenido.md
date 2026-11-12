@@ -14,7 +14,7 @@ Se desbloquean en este orden ganando una partida con el anterior (cualquier difi
 | 4 | Tormenta | verde | 90 | ×1 | Rayo de Raijin | +25% de daño y ataca un 12% más rápido. | **Juicio de Raijin**: Una tormenta de 20 rayos sobre la pantalla. |
 | 5 | Berserker | azul | 130 | ×1.05 | Kama | Furia: cuanta menos vida, más daño (hasta el doble). | **Furia del oni**: 8 s con el doble de daño. |
 | 6 | Pícara | morado | 85 | ×1.12 | Kunai | +15% de probabilidad de crítico y ágil. | **Clon de sombras**: Un clon que lanza kunai durante 10 s. |
-| 7 | Sacerdotisa | marrón | 110 | ×1 | Makibishi | +15% de área y los onigiri curan el doble. | **Sello sagrado**: Un enorme campo de púas que te cura. |
+| 7 | Sacerdotisa | marrón | 110 | ×1 | Makibishi | +15% de área y los corazones curan el doble. | **Sello sagrado**: Un enorme campo de púas que te cura. |
 | 8 | Errante | negro | 100 | ×1 | 2 armas al azar | Empieza con dos armas al azar. | **Rueda del destino**: Una técnica al azar de los demás. |
 
 ## Armas
@@ -72,7 +72,7 @@ Se gana experiencia de maestría en cada partida; cada rango da 1 punto. Cada se
 | Senda | Nodos | Técnica maestra |
 |---|---|---|
 | Senda del Asesino | Daño, Probabilidad de crítico, Daño crítico, Daño a élites y jefes | Golpe del vacío |
-| Senda del Guardián | Vida máxima, Armadura, Regeneración, Curación de onigiri | Montaña inamovible |
+| Senda del Guardián | Vida máxima, Armadura, Regeneración, Curación de corazones | Montaña inamovible |
 | Senda de la Sombra | Velocidad, Recarga de esquiva, Radio de recogida, Alcance de esquiva | Danza de sombras |
 | Senda del Monje | Carga de técnica, Experiencia, Enfriamiento, Oro | Iluminación |
 
@@ -164,7 +164,7 @@ Cada personaje tiene un desafío. Al ganar cumpliéndolo (fuera del reto diario)
 | Tormenta | Gana con la Furia de Raijin | Noche tormentosa |
 | Berserker | Gana tras pasar 60 s con menos del 30% de vida | Sangre de oni |
 | Pícara | Gana recibiendo 15 golpes o menos | Sombra violeta |
-| Sacerdotisa | Gana sin comer ningún onigiri | Hábito sagrado |
+| Sacerdotisa | Gana sin coger ningún corazón | Hábito sagrado |
 | Errante | Gana en Difícil o Imposible | Vacío |
 
 ## Maldiciones

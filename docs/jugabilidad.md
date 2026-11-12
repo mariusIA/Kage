@@ -77,7 +77,7 @@ Personaje, escenario, arma extra y misiones iguales para todos ese día (dificul
 ## Desbloqueos
 - **Personajes**: ganar con uno desbloquea el siguiente (o comprar por 9999).
 - **Escenarios**: Aldea Oculta (sobrevive 6 min en el Bosque), Montaña Nevada (gana en la Aldea), Yomi (gana en Difícil con los 8 personajes).
-- **Imposible**: igual que el Yomi.
+- **Imposible**: igual que el Yomi. Al pulsar Imposible bloqueado se muestra la lista de personajes con ✓ (ganado en Difícil) o ✗ (falta).
 
 ## Controles (por defecto, remapeables)
 | Acción | Tecla |
