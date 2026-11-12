@@ -10,6 +10,16 @@ Juego de supervivencia estilo *Vampire Survivors* con temática ninja, hecho en 
 | `game/version.json` | Versión publicada, notas del cambio y `sha256` del juego. La app de PC lo consulta al abrirse. |
 | `app/` | Código del programa de Windows (Electron): ventana, actualizador y preload. |
 | `build/icon.ico` | Icono del ejecutable. |
+| `launcher/launcher.c` | Lanzador `Kage.exe` de la carpeta principal: abre `archivos\Kage.exe`. Se compila con `zig cc -target x86_64-windows-gnu -municode -Wl,--subsystem,windows`. |
+
+## Carpeta del programa (zip)
+
+```
+Kage/
+├─ Kage.exe      ← lanzador (lo que abre el jugador)
+├─ LEEME.txt
+└─ archivos/     ← motor Electron + juego
+```
 
 ## Cómo funcionan las actualizaciones
 
