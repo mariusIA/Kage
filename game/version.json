@@ -1,11 +1,10 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "file": "game/index.html",
-  "sha256": "6fd38cae9cb7a0569c0a77856b55ec6082e5627391f6cf6071fd0a0fd73c6ae4",
+  "sha256": "233ffe10ff765e6b3b1e445e2b2f2fce7652103be1572135127529c9fa5d744c",
   "minShell": 1,
   "notes": [
-    "El ninja se mueve igual de rápido en todas las direcciones (antes iba más lento hacia arriba y hacia abajo)",
-    "El dash también recorre lo mismo en todas las direcciones",
-    "Quitada la flecha del botón Inicio del menú"
+    "Nueva ventana en la pantalla de inicio con la historia del juego (\"La leyenda de Kage\")",
+    "Se puede cerrar con la X y volver a abrir con el botón ?"
   ]
 }

@@ -212,6 +212,15 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 #menu>*{zoom:var(--mz,1)}
 #chars{max-width:1720px}
 #tab-chars #diffdesc,#tab-chars #mapdesc{margin-bottom:10px}
+#tintro{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:min(380px,40vw);background:rgba(10,12,18,.45);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.45);border-left:6px solid var(--red);border-radius:10px;padding:16px 20px 12px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
+#tintro h3{margin:0 0 8px;font-family:"Press Start 2P",monospace;font-size:13px;font-weight:400;color:var(--gold);text-shadow:0 2px 0 #000}
+#tintro p{margin:0 0 9px}#tintro b{color:#fff}#tintro .ti_how{color:#ffb39e;font-size:13px}
+#ti_x{position:absolute;top:6px;right:8px;width:28px;height:28px;border:none;border-radius:6px;background:transparent;color:#cfc9b8;font-size:22px;line-height:26px;cursor:pointer}
+#ti_x:hover,#ti_x:focus{background:rgba(255,255,255,.1);color:var(--gold);outline:none}
+#ti_open{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:40px;height:40px;display:none;border:2px solid rgba(255,210,60,.5);border-radius:50%;background:rgba(10,12,18,.7);color:var(--gold);font-family:"Press Start 2P",monospace;font-size:14px;cursor:pointer}
+#ti_open:hover{border-color:var(--gold);transform:scale(1.08)}
+@keyframes tiIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(max-width:700px){#tintro{left:12px;right:12px;width:auto;bottom:56px;font-size:12px;padding:12px 14px 8px}#tintro h3{font-size:11px}#tintro .ti_how{font-size:11px}}
 
 #title{position:fixed;inset:0;display:none;z-index:8;background:linear-gradient(90deg,rgba(4,5,8,.78) 0%,rgba(4,5,8,.35) 38%,rgba(4,5,8,0) 60%),linear-gradient(0deg,rgba(4,5,8,.55),rgba(4,5,8,0) 35%)}
 #title .tname{position:absolute;top:9vh;left:0;right:0;text-align:center;font-family:"Press Start 2P",monospace;font-size:clamp(54px,11vw,128px);color:#f4f1e8;text-shadow:0 6px 0 #000,0 0 30px rgba(255,80,60,.5);letter-spacing:10px;margin:0}
@@ -253,7 +262,15 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <button class="tbtn" id="t_opts">Ajustes</button>
     <button class="tbtn" id="t_exit">Salir</button>
   </div>
-  <div id="tver">v1.1.1</div>
+  <div id="tintro">
+    <button id="ti_x" aria-label="Cerrar">×</button>
+    <h3>La leyenda de Kage</h3>
+    <p>Hace siglos, bajo una luna roja, se abrió la puerta del <b>Yomi</b> y los yokai invadieron la tierra. Solo el clan <b>Kage</b>, los ninjas de la sombra, se atrevió a plantarles cara.</p>
+    <p>Elige a tu ninja, <b>sobrevive 10 minutos</b> a las hordas y derrota al <b>Shinigami</b>, el dios de la muerte. Cada victoria despierta a otro guerrero del clan.</p>
+    <p class="ti_how">Tú solo te mueves: tus armas atacan solas. Recoge experiencia, elige mejoras y combina armas para hacerlas evolucionar.</p>
+  </div>
+  <button id="ti_open" aria-label="Historia">?</button>
+  <div id="tver">v1.1.2</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -1910,6 +1927,8 @@ if(window.kageUpdater){
     if(r&&r.ok){$('upd_msg').textContent=`¡Listo! Reiniciando con la versión ${r.version}…`}else{$('upd_msg').textContent='No se pudo actualizar: '+((r&&r.error)||'error')+'. Prueba más tarde.';$('upd_go').disabled=false}};
 }
 
+$('ti_x').onclick=()=>{sfx('click');$('tintro').style.display='none';$('ti_open').style.display='block'};
+$('ti_open').onclick=()=>{sfx('click');$('tintro').style.display='block';$('ti_open').style.display='none'};
 $('chestskip').onclick=skipChest;
 showTitle();
 requestAnimationFrame(frame);
