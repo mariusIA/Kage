@@ -1,10 +1,11 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "file": "game/index.html",
-  "sha256": "81f93ffb5dba52323c81e4a05322c2dd8c60331303504e23b7b3371ebfdb1390",
+  "sha256": "88cd79ba66fe83796c46a4637e0c7c37eb6d0c71dff863f6bdeded475a440221",
   "minShell": 1,
   "notes": [
-    "La partida guardada ahora se guarda también en un archivo del ordenador, para que no se pierda el progreso al cerrar el juego (requiere el programa 1.3.0)",
-    "\"Nueva partida\" ya no borra tu progreso por error: te pregunta si quieres seguir con tu partida y pide confirmar dos veces para borrar"
+    "La build completa ahora llega hacia el minuto 7 (antes demasiado pronto): se sube de nivel más despacio",
+    "Nueva barra de vida en la esquina, entre el nivel y los objetos",
+    "Los disparos de los enemigos a distancia se ven mucho mejor (brillo, estela y shuriken rojos)"
   ]
 }

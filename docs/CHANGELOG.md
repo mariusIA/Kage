@@ -1,5 +1,10 @@
 # Historial de versiones
 
+## 1.4.0
+- La build completa llega hacia el minuto 7–7:30 (antes ~3:30): menos experiencia (×0,66) y niveles más caros a partir del 20.
+- Barra de vida en el HUD, entre el nivel y los objetos.
+- Los proyectiles enemigos se ven mucho mejor: brillo, estela y shuriken rojos más grandes.
+
 ## 1.3.0
 - La partida se guarda también en un archivo (`%APPDATA%\Kage\partida.json`) y se fuerza el guardado al cerrar (programa 1.3.0, `SHELL_VERSION 2`).
 - "Nueva partida" ya no borra el progreso por error: ofrece seguir con la partida y pide confirmar dos veces para borrar.

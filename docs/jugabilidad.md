@@ -18,7 +18,10 @@ El juego usa un tiempo escalado `gt() = S.t × 1,875`; los minutos de abajo son 
 
 - Máximo **600 enemigos** a la vez.
 - Matar a un jefe da un **imán global** de cristales.
-- Experiencia ×1,75 sobre la base (compensa la partida corta).
+- Experiencia ×0,66 sobre la base y curva de nivel más dura a partir del nivel 20 (`5 + nivel×6 + (nivel−20)×40`): la build completa llega hacia el **minuto 7–7:30**.
+
+## HUD
+Arriba a la izquierda: nivel, **barra de vida** (con vida actual / máxima, verde → amarilla → roja) y debajo las armas, objetos y reliquias. Los proyectiles enemigos llevan brillo de color y estela para verse bien.
 
 ## Subir de nivel
 Cada nivel ofrece 3 mejoras (4 con suerte): armas nuevas o subir nivel, objetos pasivos. Máximo 6 armas y 6 objetos, nivel 5 cada uno.
