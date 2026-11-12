@@ -231,15 +231,16 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 #menu>*{zoom:var(--mz,1)}
 #chars{max-width:1720px}
 #tab-chars #diffdesc,#tab-chars #mapdesc{margin-bottom:10px}
-#tintro{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:min(380px,40vw);background:rgba(10,12,18,.45);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.45);border-left:6px solid var(--red);border-radius:10px;padding:16px 20px 12px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
+#tside{position:absolute;right:clamp(16px,4vw,60px);top:clamp(120px,20vh,170px);bottom:clamp(70px,14vh,150px);width:min(400px,42vw);display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:12px;pointer-events:none}#tside>*{pointer-events:auto}
+#tintro{position:relative;flex:none;background:rgba(10,12,18,.45);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.45);border-left:6px solid var(--red);border-radius:10px;padding:16px 20px 12px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
 #tintro h3{margin:0 0 8px;font-family:"Press Start 2P",monospace;font-size:13px;font-weight:400;color:var(--gold);text-shadow:0 2px 0 #000}
 #tintro p{margin:0 0 9px}#tintro b{color:#fff}#tintro .ti_how{color:#ffb39e;font-size:13px}
 #ti_x{position:absolute;top:6px;right:8px;width:28px;height:28px;border:none;border-radius:6px;background:transparent;color:#cfc9b8;font-size:22px;line-height:26px;cursor:pointer}
 #ti_x:hover,#ti_x:focus{background:rgba(255,255,255,.1);color:var(--gold);outline:none}
-#ti_open{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:40px;height:40px;display:none;border:2px solid rgba(255,210,60,.5);border-radius:50%;background:rgba(10,12,18,.7);color:var(--gold);font-family:"Press Start 2P",monospace;font-size:14px;cursor:pointer}
+#ti_open{position:relative;align-self:flex-end;flex:none;width:40px;height:40px;display:none;border:2px solid rgba(255,210,60,.5);border-radius:50%;background:rgba(10,12,18,.7);color:var(--gold);font-family:"Press Start 2P",monospace;font-size:14px;cursor:pointer}
 #ti_open:hover{border-color:var(--gold);transform:scale(1.08)}
 @keyframes tiIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media(max-width:700px){#tintro{left:12px;right:12px;width:auto;bottom:56px;font-size:12px;padding:12px 14px 8px}#tintro h3{font-size:11px}#tintro .ti_how{font-size:11px}}
+@media(max-width:700px){#tside{left:12px;right:12px;width:auto;bottom:56px;top:110px}#tintro{font-size:12px;padding:12px 14px 8px}#tintro h3{font-size:11px}#tintro .ti_how{font-size:11px}}
 
 /* Cartas de reliquia: borde morado brillante y animado */
 .card.relic{position:relative;border-color:#c58cff!important;border-left-color:#c58cff!important;background:linear-gradient(180deg,rgba(60,30,90,.92),rgba(18,12,30,.92))!important;box-shadow:0 0 0 1px rgba(197,140,255,.6),0 0 18px rgba(170,90,255,.55),inset 0 0 22px rgba(170,90,255,.25);animation:relicGlow 1.6s ease-in-out infinite}
@@ -277,7 +278,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 .path.active{box-shadow:0 0 0 1px var(--pc),0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
 .path .pact{font-family:"Press Start 2P",monospace;font-size:9px;color:#0b0d12;background:var(--pc);border-radius:4px;padding:6px 8px;text-align:center;margin:4px 0 8px}
 .path .pchoose{width:100%;font-size:9px;padding:8px;margin:4px 0 8px}
-#tpatch{position:absolute;right:clamp(16px,4vw,60px);bottom:clamp(70px,14vh,150px);width:min(400px,42vw);max-height:min(62vh,520px);overflow:auto;display:none;background:rgba(10,12,18,.55);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.5);border-left:6px solid var(--gold);border-radius:10px;padding:16px 20px 10px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:13.5px;line-height:1.45;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
+#tpatch{position:relative;flex:0 1 auto;min-height:90px;overflow:auto;display:none;background:rgba(10,12,18,.55);backdrop-filter:blur(2px);border:2px solid rgba(255,210,60,.5);border-left:6px solid var(--gold);border-radius:10px;padding:16px 20px 10px;color:#e8e2cf;font-family:system-ui,sans-serif;font-size:13.5px;line-height:1.45;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tiIn .5s ease-out}
 #tpatch h3{margin:0 0 10px;font-family:"Press Start 2P",monospace;font-size:12px;font-weight:400;color:var(--gold);text-shadow:0 2px 0 #000}#tpatch h3 span{color:#ff8a6a;font-size:10px}
 #tpatch .pg{margin:0 0 10px}
 #tpatch .tpn{margin:0 0 10px;font-size:13px;color:#ffe9a0}
@@ -418,6 +419,12 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <button class="tbtn" id="t_opts">Ajustes</button>
     <button class="tbtn" id="t_exit">Salir</button>
   </div>
+  <div id="tside">
+  <div id="tpatch">
+    <button id="tp_x" aria-label="Cerrar">×</button>
+    <h3>Notas del parche <span id="tp_v"></span></h3>
+    <div id="tp_body"></div>
+  </div>
   <div id="tintro">
     <button id="ti_x" aria-label="Cerrar">×</button>
     <h3>La leyenda de Kage</h3>
@@ -425,14 +432,10 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <p>Elige a tu ninja, <b>sobrevive 8 minutos</b> a las hordas y derrota al <b>Shinigami</b>, el dios de la muerte. Cada victoria despierta a otro guerrero del clan.</p>
     <p class="ti_how">Tú solo te mueves: tus armas atacan solas. Recoge experiencia, elige mejoras y combina armas para hacerlas evolucionar.</p>
   </div>
-  <div id="tpatch">
-    <button id="tp_x" aria-label="Cerrar">×</button>
-    <h3>Notas del parche <span id="tp_v"></span></h3>
-    <div id="tp_body"></div>
-  </div>
   <button id="ti_open" aria-label="Historia">?</button>
+  </div>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.7.0</div>
+  <div id="tver">v1.7.1</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -2707,10 +2710,11 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.7.0';
+const GAME_VERSION='1.7.1';
 // Historial de notas, de la más nueva a la más antigua. Quien actualiza desde una versión vieja ve todas
 // las que se ha perdido; quien instala el juego de cero no ve ninguna (ver showTitle).
 const PATCHES=[
+  {v:'1.7.1',fix:['Las notas del parche salen encima de la leyenda de Kage, sin taparla']},
   {v:'1.7.0',nuevo:['Tienda de cosméticos (Tienda → Cosméticos): gasta el oro que te sobra en estelas del dash, efectos al derrotar enemigos, auras, color del nombre y títulos',
     'Vista previa animada: pasa el ratón por un cosmético para probarlo antes de comprarlo',
     'En cooperativo tus compañeros ven tus cosméticos'],
@@ -2749,8 +2753,8 @@ function unseenPatches(){const sp=SAVE.seenPatch;return PATCHES.filter(P=>!sp||v
 function renderPatch(list,hist){list=list&&list.length?list:PATCHES;const many=list.length>1;
   $('tp_v').textContent=many?`v${list[list.length-1].v} a v${list[0].v}`:'v'+list[0].v;
   $('tp_body').innerHTML=(many?`<p class="tpn">${hist?'Historial de cambios del juego, de lo más nuevo a lo más antiguo:':`Te has perdido ${list.length} actualizaciones. Esto es todo lo que ha cambiado:`}</p>`:'')+list.map(P=>(many?`<div class="tpver">Versión ${P.v}</div>`:'')+PATCH_CAT.filter(([k])=>P[k]&&P[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${P[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')).join('')}
-function showPatch(list,hist){renderPatch(list,hist);$('tpatch').style.display='block';$('tp_body').scrollTop=0;$('tpatch').scrollTop=0;$('tintro').style.display='none';$('ti_open').style.display='none'}
-function closePatch(){$('tpatch').style.display='none';SAVE.seenPatch=GAME_VERSION;save();$('tintro').style.display='block';$('ti_open').style.display='none';$('tp_open').style.display='block'}
+function showPatch(list,hist){renderPatch(list,hist);$('tpatch').style.display='block';$('tp_body').scrollTop=0;$('tpatch').scrollTop=0;$('tp_open').style.display='none'}
+function closePatch(){$('tpatch').style.display='none';SAVE.seenPatch=GAME_VERSION;save();$('tp_open').style.display='block'}
 $('tp_x').onclick=()=>{sfx('click');closePatch()};
 $('tp_open').onclick=()=>{sfx('click');showPatch(PATCHES,true)};
 

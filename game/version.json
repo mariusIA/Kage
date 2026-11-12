@@ -1,11 +1,9 @@
 {
-  "version": "1.7.0",
+  "version": "1.7.1",
   "file": "game/index.html",
-  "sha256": "0caeb2e5f2a21da650000ee3e51ff18dc1c9650b172be6e487f8e3efa9bde8af",
+  "sha256": "5f5051e35507061050b0cc82232bbc2abd1878aa109b50de2b7eb2456fc3d9a9",
   "minShell": 1,
   "notes": [
-    "Nueva tienda de cosméticos: estelas del dash, efectos al derrotar, auras, color del nombre y títulos",
-    "Vista previa animada para probar cada cosmético antes de comprarlo",
-    "En cooperativo tus compañeros ven tus cosméticos"
+    "Las notas del parche salen encima de la leyenda de Kage, sin taparla"
   ]
 }

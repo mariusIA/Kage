@@ -1,5 +1,8 @@
 # Historial de versiones
 
+## 1.7.1
+- Pantalla de inicio: las notas del parche salen **encima** de "La leyenda de Kage" en una misma columna (`#tside`), sin taparla; si no caben, las notas tienen su propia barra de desplazamiento.
+
 ## 1.7.0
 - **Tienda de cosméticos** (Tienda → pestaña **Cosméticos**): estelas del dash, efectos al derrotar enemigos, auras, color del nombre y títulos (estos dos solo se ven en cooperativo). Solo visuales. Vista previa animada; pasar el ratón por un cosmético lo prueba.
 - En cooperativo los cosméticos de cada jugador se envían a los demás (sala, partida y efectos al derrotar).
