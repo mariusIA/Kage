@@ -11,6 +11,7 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 | `app/` | Windows shell (Electron 45): `main.js` (window, updater, file-based save), `preload.js` (exposes `window.kageUpdater`), `package.json`, `icon.png`. |
 | `launcher/launcher.c` | Small `Kage.exe` launcher for the zip's main folder. It opens `archivos\Kage.exe`. |
 | `build/icon.ico` | Executable icon. |
+| `docs/` | **Living documentation** (gameplay, content, architecture, publishing, changelog). |
 
 ## Common tasks
 
@@ -18,8 +19,9 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 1. Edit `game/index.html`.
 2. Update the visible version on the title screen: `<div id="tver">vX.Y.Z</div>`.
 3. Update `game/version.json`: raise `version`, set `sha256` from `sha256sum game/index.html`, write the `notes` (short, in Spanish), and keep `minShell: 1` if the shell doesn't change.
-4. Commit to `main` and push. Players get it the next time they open the app, with a "¡Nueva versión disponible!" dialog. GitHub's raw cache can take about 5 minutes.
-5. The game is also published as a claude.ai artifact (slug `aea0683e-cd40-4a99-b57d-6815c2a981eb`). Republish it with the same `index.html`.
+4. Update the affected files in `docs/` and add the `docs/CHANGELOG.md` entry.
+5. Commit to `main` and push. Players get it the next time they open the app, with a "¡Nueva versión disponible!" dialog. GitHub's raw cache can take about 5 minutes.
+6. The game is also published as a claude.ai artifact (slug `aea0683e-cd40-4a99-b57d-6815c2a981eb`). Republish it with the same `index.html`.
 
 ### Changing the shell (`app/`) — rare
 - Raise `SHELL_VERSION` in `app/main.js`, and raise `minShell` only if the game *requires* the new shell.
@@ -66,6 +68,16 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
   - Dark panels with a red left stripe (`--red #c8302a`), gold hover (`--gold`), cream titles (`--cream`) and the pixel font for headings and buttons.
   - The title screen has a red moon, a torii and a parade of ninjas.
   - Avoid emojis: Marius prefers pixel icons.
+
+## Living documentation (`docs/`) — MANDATORY RULE
+`docs/` is the game's living documentation (written in Spanish). **Every change that affects anything documented must update `docs/` in the same commit**, without Marius having to ask:
+- Mechanics, pacing, victory, missions, chests, controls → `docs/jugabilidad.md`.
+- Data (characters, weapons, passives, relics, masteries, shop, difficulties, maps, bosses, achievements) → `docs/contenido.md`.
+- Code or structure (sections, state, saving, rendering, Windows app) → `docs/arquitectura.md`.
+- Release or packaging process → `docs/publicacion.md`.
+- **Every published version** adds its entry to `docs/CHANGELOG.md` and updates "Versión documentada" in `docs/README.md`.
+- A new topic that doesn't fit gets its own `.md` in `docs/`, linked from `docs/README.md`.
+- Before calling a change done, check that `docs/` doesn't contradict the code (numbers, timings, names).
 
 ## Preferences and conventions
 - Marius doesn't like emojis in the UI: use pixel icons.
