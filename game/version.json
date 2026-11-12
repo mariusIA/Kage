@@ -1,15 +1,10 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.1",
   "file": "game/index.html",
-  "sha256": "ab47d58493cecef5b9a8ab7a9da411887130cee992929e61f08107096e768b05",
+  "sha256": "e1582becc589f69b50010c5b527e3b4009ec539f7c573f256df6ec1e1f8c311e",
   "minShell": 1,
   "notes": [
-    "Armas nuevas: Katana y Bomba de humo, con sus evoluciones",
-    "Eventos en partida: mercader, santuario y luna de sangre",
-    "Maldiciones opcionales a cambio de más oro y maestría",
-    "Desafíos por personaje con trajes alternativos",
-    "Pestañas Pergaminos y Bestiario, pausa con resumen de la build y aviso de evolución",
-    "Notas del parche en la pantalla de inicio, tarjetas de personaje nuevas y más mejoras visuales",
-    "Tienda más cara y maestrías con una sola senda activa"
+    "Fácil más fácil: menos enemigos, con menos vida y que pegan menos",
+    "Fácil: los jefes tienen menos vida"
   ]
 }

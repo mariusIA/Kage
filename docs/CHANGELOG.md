@@ -1,5 +1,8 @@
 # Historial de versiones
 
+## 1.5.1
+- Fácil más fácil: −20% de enemigos, −25% de vida, −30% de daño y jefes con −20% de vida.
+
 ## 1.5.0
 - Pausa con resumen de la build (daño por arma, objetos, reliquias, evoluciones pendientes).
 - Aviso de evolución lista (icono brillando con "EVO").

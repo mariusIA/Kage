@@ -372,7 +372,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.5.0</div>
+  <div id="tver">v1.5.1</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -820,7 +820,7 @@ const SHOP=[
   {k:'revive',ic:'',name:'Revivir',max:1,base:600,fixed:6666,desc:'Revives una vez con media vida'}
 ];
 const DIFFS={
-  facil:{name:'Fácil',ic:'',hp:1,dmg:1,spawn:1,spd:1,boss:1,gold:0.75,xp:1,desc:'El juego tal y como estaba: para disfrutar y probar builds. −25% de oro.'},
+  facil:{name:'Fácil',ic:'',hp:0.75,dmg:0.7,spawn:0.8,spd:1,boss:0.8,gold:0.75,xp:1,desc:'Para disfrutar y probar builds: menos enemigos, con menos vida y que pegan menos. −25% de oro.'},
   normal:{name:'Normal',ic:'',hp:1.25,dmg:1.2,spawn:1.15,spd:1.05,boss:1.25,gold:1.25,xp:1,desc:'Enemigos y jefes más duros y numerosos. +25% de oro.'},
   dificil:{name:'Difícil',ic:'',hp:1.6,dmg:1.5,spawn:1.4,spd:1.12,boss:1.6,gold:1.6,xp:1,desc:'Hordas enormes, rápidas y que pegan fuerte. Solo para expertos. +60% de oro.'},
   imposible:{name:'Imposible',ic:'',hp:2.2,dmg:2,spawn:1.7,spd:1.2,boss:2.2,gold:2.5,xp:1,desc:'El reto definitivo: todo es brutal. Exclusiva del Yomi... y de los demás escenarios, si te atreves. +150% de oro.'}
@@ -2206,25 +2206,13 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.5.0';
+const GAME_VERSION='1.5.1';
 const PATCH={
-  nuevo:['Armas nuevas: Katana (evoluciona con Suerte) y Bomba de humo (evoluciona con Imán)',
-    'Eventos en partida: mercader ambulante, santuario con bendiciones y luna de sangre',
-    'Maldiciones: haz la partida más difícil a cambio de más oro y maestría',
-    'Desafíos por personaje que desbloquean trajes alternativos',
-    'Pestañas Pergaminos (guía de evoluciones) y Bestiario (todos los yokai)',
-    'La pausa muestra tu build: daño por arma, objetos, reliquias y evoluciones pendientes',
-    'Aviso "EVO" cuando un arma ya puede evolucionar',
-    'Tarjetas de personaje rediseñadas y nuevo botón de compra',
-    'Cartas de reliquia en morado, cristales de experiencia más visibles y esta ventana de novedades',
-    'Logros nuevos: Erudito yokai, Exterminador y Maldito'],
-  fix:['La ventana del juego ya se llama "Kage" (antes ponía "Supervivientes")',
-    'Los nombres de las maestrías coinciden con lo que dan (p. ej. "Probabilidad de crítico")',
-    'Números de daño más legibles, con opción de agruparlos',
-    'La Kama se ve más pequeña, a juego con su alcance real'],
-  buff:[],
-  nerf:['Tienda: subir una mejora al máximo cuesta 8.000 de oro en total',
-    'Maestrías: solo cuentan los puntos de la senda que elijas']
+  nuevo:[],
+  fix:[],
+  buff:['Fácil es más fácil: un 20% menos de enemigos, con un 25% menos de vida y un 30% menos de daño',
+    'Fácil: los jefes tienen un 20% menos de vida'],
+  nerf:[]
 };
 const PATCH_CAT=[['nuevo','NOVEDADES'],['fix','CORRECCIONES'],['buff','BUFFS'],['nerf','NERFS']];
 function renderPatch(){$('tp_v').textContent='v'+GAME_VERSION;$('tp_body').innerHTML=PATCH_CAT.filter(([k])=>PATCH[k]&&PATCH[k].length).map(([k,t])=>`<div class="pg ${k}"><h4>${t}</h4><ul>${PATCH[k].map(n=>`<li>${escH(n)}</li>`).join('')}</ul></div>`).join('')}

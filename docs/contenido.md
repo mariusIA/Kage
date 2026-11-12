@@ -97,7 +97,7 @@ Precio: **8000 de oro en total** para subir cualquier mejora al máximo (`SHOP_T
 
 | Dificultad | Descripción |
 |---|---|
-| Fácil | El juego tal y como estaba: para disfrutar y probar builds. −25% de oro. |
+| Fácil | Para disfrutar y probar builds: −20% de enemigos, −25% de vida, −30% de daño, jefes −20% de vida. −25% de oro. |
 | Normal | Enemigos y jefes más duros y numerosos. +25% de oro. |
 | Difícil | Hordas enormes, rápidas y que pegan fuerte. Solo para expertos. +60% de oro. |
 | Imposible | El reto definitivo: todo es brutal. Exclusiva del Yomi... y de los demás escenarios, si te atreves. +150% de oro. |
