@@ -1,12 +1,11 @@
 {
-  "version": "1.6.0",
+  "version": "1.6.1",
   "file": "game/index.html",
-  "sha256": "5fd2300be278c9163ab3df38032c0253b9b54104bb14820436cc615682a3af84",
+  "sha256": "34a84041761d9970cf88e575dd8ccfa4189690075d5dab87952fa019b318d480",
   "minShell": 1,
   "notes": [
-    "¡Nuevo modo cooperativo online para 2 jugadores, cada uno en su PC!",
-    "Botón Cooperativo en la pantalla de inicio: crea una sala y pásale el código a tu amigo",
-    "Experiencia compartida, cada uno elige sus mejoras y podéis revivir al compañero caído",
-    "Los dos ganáis el oro y los desbloqueos de la partida"
+    "Cooperativo de hasta 4 jugadores",
+    "Pon tu nombre en la sala: se ve encima de tu ninja en la partida",
+    "El cooperativo es más difícil y sube con cada jugador"
   ]
 }

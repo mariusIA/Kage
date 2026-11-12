@@ -1,5 +1,10 @@
 # Historial de versiones
 
+## 1.6.1
+- Cooperativo de **hasta 4 jugadores**: sala con 4 puestos, todos los invitados tienen que estar listos para empezar, revive cualquier compañero y si alguien se desconecta los demás siguen.
+- Nombre de jugador en la sala (`SAVE.name`), visible en los puestos, encima de cada ninja y en los avisos.
+- Cooperativo más difícil y escalado por jugadores: por cada jugador extra, enemigos +50% de vida, jefes +60%, +40% de aparición y +10% de daño (`COOP_D`, `coopDiff()`).
+
 ## 1.6.0
 - **Modo cooperativo online** para 2 jugadores, cada uno desde su PC, desde el botón **Cooperativo** de la pantalla de inicio: pantalla de **sala** con código, los dos puestos de jugador, elección de ninja, escenario, dificultad y maldiciones, y botón "Estoy listo" (ver [cooperativo.md](cooperativo.md)).
 - Experiencia compartida, build propia para cada jugador, cofres de quien los recoge y pausa compartida al elegir.

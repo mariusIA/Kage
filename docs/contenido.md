@@ -102,6 +102,8 @@ Precio: **8000 de oro en total** para subir cualquier mejora al máximo (`SHOP_T
 | Difícil | Hordas enormes, rápidas y que pegan fuerte. Solo para expertos. +60% de oro. |
 | Imposible | El reto definitivo: todo es brutal. Exclusiva del Yomi... y de los demás escenarios, si te atreves. +150% de oro. |
 
+En **cooperativo** se suma un extra a la dificultad elegida **por cada jugador además del primero**: enemigos +50% de vida, jefes +60% de vida, +40% de aparición y +10% de daño (ver [cooperativo.md](cooperativo.md)).
+
 ## Escenarios
 
 | Escenario | Cómo se desbloquea | Descripción |
