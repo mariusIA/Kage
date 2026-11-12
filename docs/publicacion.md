@@ -2,7 +2,7 @@
 
 ## Versión del juego (lo habitual)
 1. Cambiar `game/index.html`.
-2. Subir la versión visible: `<div id="tver">vX.Y.Z</div>`.
+2. Subir la versión: `GAME_VERSION` y `<div id="tver">vX.Y.Z</div>`, y escribir las **notas del parche** en `PATCH` (sección NOTAS DEL PARCHE del juego), separadas en `nuevo`, `fix` (correcciones), `buff` y `nerf`. Se muestran una vez en la pantalla de inicio a quien ya tenía partida.
 3. `game/version.json`: subir `version`, poner `sha256` (`sha256sum game/index.html`), escribir `notes` en español (cortas, para jugadores). `minShell` = 1 salvo que el juego necesite un programa más nuevo.
 4. Actualizar la documentación afectada en `docs/` y añadir la entrada en `docs/CHANGELOG.md`.
 5. Commit en `main` y push. Los jugadores lo reciben al abrir la app (caché de GitHub: hasta ~5 min).

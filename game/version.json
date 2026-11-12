@@ -1,11 +1,15 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "file": "game/index.html",
-  "sha256": "88cd79ba66fe83796c46a4637e0c7c37eb6d0c71dff863f6bdeded475a440221",
+  "sha256": "ab47d58493cecef5b9a8ab7a9da411887130cee992929e61f08107096e768b05",
   "minShell": 1,
   "notes": [
-    "La build completa ahora llega hacia el minuto 7 (antes demasiado pronto): se sube de nivel más despacio",
-    "Nueva barra de vida en la esquina, entre el nivel y los objetos",
-    "Los disparos de los enemigos a distancia se ven mucho mejor (brillo, estela y shuriken rojos)"
+    "Armas nuevas: Katana y Bomba de humo, con sus evoluciones",
+    "Eventos en partida: mercader, santuario y luna de sangre",
+    "Maldiciones opcionales a cambio de más oro y maestría",
+    "Desafíos por personaje con trajes alternativos",
+    "Pestañas Pergaminos y Bestiario, pausa con resumen de la build y aviso de evolución",
+    "Notas del parche en la pantalla de inicio, tarjetas de personaje nuevas y más mejoras visuales",
+    "Tienda más cara y maestrías con una sola senda activa"
   ]
 }

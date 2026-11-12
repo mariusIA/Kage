@@ -18,6 +18,7 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 ### Publishing a game update (the usual case)
 1. Edit `game/index.html`.
 2. Update the visible version on the title screen: `<div id="tver">vX.Y.Z</div>`.
+   Also raise `GAME_VERSION` and write the in-game patch notes in `PATCH` (section NOTAS DEL PARCHE), split into `nuevo` / `fix` / `buff` / `nerf` (Spanish, short).
 3. Update `game/version.json`: raise `version`, set `sha256` from `sha256sum game/index.html`, write the `notes` (short, in Spanish), and keep `minShell: 1` if the shell doesn't change.
 4. Update the affected files in `docs/` and add the `docs/CHANGELOG.md` entry.
 5. Commit to `main` and push. Players get it the next time they open the app, with a "¡Nueva versión disponible!" dialog. GitHub's raw cache can take about 5 minutes.
@@ -41,7 +42,7 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 - Electron doesn't start in this container (xvfb/zygote), so the shell can't be tested here. Check it with `node --check`.
 
 ## Game architecture (`game/index.html`)
-- The code is split into sections marked `// =============== NAME ===============`: GUARDADO, SONIDO, MÚSICA, SPRITES, DATOS (personajes/armas/enemigos), RELIQUIAS, MAESTRÍAS, ENTRADA, ESTADO, MAPA, ENEMIGOS, COMBATE, UPDATE, MISIONES, SUBIR DE NIVEL Y COFRES, PAUSA/FIN, MENÚ, DIBUJO, BUCLE, PANTALLA DE INICIO, ACTUALIZACIONES.
+- The code is split into sections marked `// =============== NAME ===============`: GUARDADO, SONIDO, MÚSICA, SPRITES, DATOS (personajes/armas/enemigos), RELIQUIAS, MAESTRÍAS, ENTRADA, ESTADO, MAPA, ENEMIGOS, COMBATE, UPDATE, MISIONES, SUBIR DE NIVEL Y COFRES, PAUSA/FIN, MENÚ, DIBUJO, BUCLE, PANTALLA DE INICIO, ACTUALIZACIONES, NOTAS DEL PARCHE, EVENTOS ALEATORIOS, MALDICIONES, DESAFÍOS Y ASPECTOS.
 - **Global state:** `S` is the current run (`null` in menus) and `SAVE` is the persistent progress.
 - **Saving:**
   - `save()` writes `localStorage['surv_save_v2']`, plus `kageUpdater.writeSave()` in the app (file `%APPDATA%\Kage\partida.json`).
@@ -83,4 +84,5 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 - Marius doesn't like emojis in the UI: use pixel icons.
 - Every visible change gets its notes in `version.json` written in Spanish for players.
 - Commits: message in Spanish, author `mariusIA <mariusIA@users.noreply.github.com>`, with the session's attribution lines.
-- The economy (shop prices, Revive 6666, characters 9999) stays as it is unless he asks otherwise.
+- The economy stays as it is unless he asks otherwise: shop: every upgrade costs `SHOP_TOTAL = 8000` gold to max, split across its levels with weights `1+0.8*level`, Revive 6666, characters 9999.
+- When Marius says not to push to GitHub, keep changes local (and don't republish the web artifact) until he says so; log them under "Sin publicar" in `docs/CHANGELOG.md`.

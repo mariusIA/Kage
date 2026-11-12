@@ -19,7 +19,7 @@ Se desbloquean en este orden ganando una partida con el anterior (cualquier difi
 
 ## Armas
 
-Máximo 6 armas por partida, nivel máximo 5. Con el arma a nivel 5 y su objeto pasivo, el siguiente cofre ofrece la **evolución**.
+Hay 9 armas. Máximo 6 por partida, nivel máximo 5. Las evoluciones descubiertas se ven en la pestaña **Pergaminos** del menú. Con el arma a nivel 5 y su objeto pasivo, el siguiente cofre ofrece la **evolución**.
 
 | Arma | Evolución | Necesita el objeto |
 |---|---|---|
@@ -30,6 +30,8 @@ Máximo 6 armas por partida, nivel máximo 5. Con el arma a nivel 5 y su objeto 
 | Kama | Kama del Dragón | Fuerza |
 | Kunai | Lluvia de Kunai | Botas |
 | Makibishi | Campo de Púas | Vigor |
+| Katana | Iai del Relámpago | Suerte |
+| Bomba de humo | Niebla del Vacío | Imán |
 
 ## Objetos pasivos
 
@@ -63,18 +65,20 @@ Salen en cofres (35%), en misiones difíciles y, con la build completa, a veces 
 
 ## Maestrías
 
-Se gana experiencia de maestría en cada partida; cada rango da 1 punto. Cada senda tiene 4 nodos y una piedra angular (solo una activa).
+Se gana experiencia de maestría en cada partida; cada rango da 1 punto. Cada senda tiene 4 nodos y una técnica maestra (necesita 6 puntos en su senda).
 
-| Senda | Nodos | Piedra angular |
+**Se juega con una sola senda** (`SAVE.mpath`): solo cuentan los puntos y la técnica maestra de la senda activa. Los puntos de las demás sendas se guardan pero no hacen nada hasta cambiar a ellas (botón "Jugar con esta senda").
+
+| Senda | Nodos | Técnica maestra |
 |---|---|---|
-| Senda del Asesino | Filo, Precisión, Golpe mortal, Cazador | Golpe del vacío |
-| Senda del Guardián | Piel de hierro, Temple, Respiración, Segundo aliento | Montaña inamovible |
-| Senda de la Sombra | Pies ligeros, Reflejos, Atracción, Paso sombrío | Danza de sombras |
-| Senda del Monje | Concentración, Sabiduría, Calma, Fortuna | Iluminación |
+| Senda del Asesino | Daño, Probabilidad de crítico, Daño crítico, Daño a élites y jefes | Golpe del vacío |
+| Senda del Guardián | Vida máxima, Armadura, Regeneración, Curación de onigiri | Montaña inamovible |
+| Senda de la Sombra | Velocidad, Recarga de esquiva, Radio de recogida, Alcance de esquiva | Danza de sombras |
+| Senda del Monje | Carga de técnica, Experiencia, Enfriamiento, Oro | Iluminación |
 
 ## Tienda (mejoras permanentes)
 
-Precio: `base × 2,5 × (1 + nivel × 1,2)`. Revivir cuesta fijo **6666**.
+Precio: **8000 de oro en total** para subir cualquier mejora al máximo (`SHOP_TOTAL`), repartido de forma creciente entre sus niveles. Mejoras de 5 niveles: 620 → 1110 → 1600 → 2090 → 2580. Mejoras de 3 niveles: 1480 → 2670 → 3850. Revivir cuesta fijo **6666**.
 
 | Mejora | Efecto por nivel | Niveles |
 |---|---|---|
@@ -143,5 +147,36 @@ Precio: `base × 2,5 × (1 + nivel × 1,2)`. Revivir cuesta fijo **6666**.
 | Inmortal | Aguanta 15 minutos (modo infinito) | 600 |
 | A tus órdenes | Completa una misión | 75 |
 | Agente de élite | Completa 6 misiones en una partida | 400 |
+| Maldito | Gana una partida con 3 o más maldiciones | 500 |
+| Erudito yokai | Descubre todos los yokai del bestiario | 500 |
+| Exterminador | Derrota a 1.000 de un mismo tipo de yokai | 300 |
 | Maestro de misiones | Completa 50 misiones en total | 800 |
 | Disciplina | Sobrevive 6 minutos en un reto diario | 150 |
+
+## Desafíos y aspectos
+Cada personaje tiene un desafío. Al ganar cumpliéndolo (fuera del reto diario) se desbloquea un **traje alternativo**, que se activa en su tarjeta ("Traje: …").
+
+| Personaje | Desafío | Traje |
+|---|---|---|
+| Aprendiz | Gana con 3 armas evolucionadas | Azul del alba |
+| Guardián | Gana sin usar la esquiva | Armadura de bronce |
+| Corredora | Gana completando 4 misiones | Viento esmeralda |
+| Tormenta | Gana con la Furia de Raijin | Noche tormentosa |
+| Berserker | Gana tras pasar 60 s con menos del 30% de vida | Sangre de oni |
+| Pícara | Gana recibiendo 15 golpes o menos | Sombra violeta |
+| Sacerdotisa | Gana sin comer ningún onigiri | Hábito sagrado |
+| Errante | Gana en Difícil o Imposible | Vacío |
+
+## Maldiciones
+Opcionales, se eligen bajo la dificultad. Suman su bonificación al **oro** y a la **experiencia de maestría** de la partida. No se aplican en el reto diario.
+
+| Maldición | Efecto | Bonificación |
+|---|---|---|
+| Yokai veloces | Enemigos un 40% más rápidos | +25% |
+| Horda infinita | Un 60% más de enemigos | +30% |
+| Cuerpo frágil | Vida máxima −40% | +25% |
+| Sin descanso | No puedes curarte | +35% |
+| Niebla espesa | Sin minimapa ni flechas | +15% |
+
+## Bestiario
+Pestaña del menú con los 15 yokai (10 normales y 5 jefes): nombre, descripción y cuántos has derrotado. Los no derrotados salen como silueta. Estrellas a 1, 100 y 1.000 derrotados.
