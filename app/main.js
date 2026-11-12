@@ -1,10 +1,10 @@
-const { app, BrowserWindow, Menu, ipcMain, net } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, net, session } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 
 // ===== Configuración de actualizaciones =====
-const SHELL_VERSION = 1;                       // versión del "programa" (no del juego)
+const SHELL_VERSION = 2;                       // versión del "programa" (no del juego)
 const REMOTE = 'https://raw.githubusercontent.com/mariusIA/kage/main/';
 const GAME_DIR = path.join(app.getPath('userData'), 'game');
 
@@ -74,6 +74,17 @@ async function checkUpdate() {
     win.webContents.send('kage:update', { version: pending.version, notes: pending.notes, needsDownload: !!pending.needsDownload });
   } catch (e) { /* sin internet o GitHub caído: se juega con la versión actual */ }
 }
+
+// ===== Copia de la partida guardada en un archivo (además del localStorage) =====
+const SAVE_FILE = path.join(app.getPath('userData'), 'partida.json');
+ipcMain.on('kage:loadSave', e => { try { e.returnValue = fs.readFileSync(SAVE_FILE, 'utf8'); } catch (err) { e.returnValue = null; } });
+let flushT = null;
+ipcMain.on('kage:writeSave', (e, data) => {
+  try { if (typeof data !== 'string' || data.length > 2e6) return; JSON.parse(data);
+    const tmp = SAVE_FILE + '.tmp'; fs.writeFileSync(tmp, data); fs.renameSync(tmp, SAVE_FILE); } catch (err) {}
+  clearTimeout(flushT); flushT = setTimeout(() => { try { session.defaultSession.flushStorageData(); } catch (err) {} }, 300);
+});
+app.on('before-quit', () => { try { session.defaultSession.flushStorageData(); } catch (err) {} });
 
 ipcMain.handle('kage:info', () => ({ version: current ? current.version : '?', shell: SHELL_VERSION }));
 ipcMain.handle('kage:apply', async () => {

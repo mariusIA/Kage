@@ -1,11 +1,10 @@
 {
-  "version": "1.2.2",
+  "version": "1.3.0",
   "file": "game/index.html",
-  "sha256": "00b88485249325a03cd0ed8f05cf625e0ed5f9152215442ff7bbbbd4fa9eb8c7",
+  "sha256": "81f93ffb5dba52323c81e4a05322c2dd8c60331303504e23b7b3371ebfdb1390",
   "minShell": 1,
   "notes": [
-    "Con la build completa ya no salen cofres: los élites sueltan una bolsa de oro más grande",
-    "Si coges un cofre con la build completa, se convierte en oro al momento (y a veces en una reliquia), sin ventana de elegir",
-    "Las misiones ya no ofrecen cofre si tienes la build completa"
+    "La partida guardada ahora se guarda también en un archivo del ordenador, para que no se pierda el progreso al cerrar el juego (requiere el programa 1.3.0)",
+    "\"Nueva partida\" ya no borra tu progreso por error: te pregunta si quieres seguir con tu partida y pide confirmar dos veces para borrar"
   ]
 }

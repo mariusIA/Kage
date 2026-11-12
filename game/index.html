@@ -271,13 +271,13 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <p class="ti_how">Tú solo te mueves: tus armas atacan solas. Recoge experiencia, elige mejoras y combina armas para hacerlas evolucionar.</p>
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
-  <div id="tver">v1.2.2</div>
+  <div id="tver">v1.3.0</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
   <p id="upd_msg" class="small" style="min-height:18px"></p>
   <div style="display:flex;gap:10px;justify-content:flex-end"><button class="btn sec" id="upd_later">Más tarde</button><button class="btn" id="upd_go">Actualizar ahora</button></div></div></div>
-<div class="overlay" id="tconfirm"><div class="box"><h2 style="margin-top:0">¿Empezar de cero?</h2><p>Se borrará todo tu progreso: oro, mejoras, personajes, maestrías, logros y récords. Tus ajustes y controles se mantienen.</p><div style="display:flex;gap:10px;justify-content:center"><button class="btn" id="tc_yes" style="background:#c8302a;color:#fff">Sí, borrar todo</button><button class="btn sec" id="tc_no">Cancelar</button></div></div></div>
+<div class="overlay" id="tconfirm"><div class="box"><h2 style="margin-top:0">Ya tienes una partida guardada</h2><p id="tc_sum"></p><p>¿Quieres seguir con ella o <b>borrarla</b> y empezar de cero?</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="tc_cont">Seguir con mi partida</button><button class="btn sec" id="tc_yes">Borrar y empezar de cero</button></div><p class="small" id="tc_warn" style="display:none;color:#ff8a6a">Pulsa otra vez "Borrar y empezar de cero" para confirmar. Se perderán personajes, escenarios, oro y mejoras.</p></div></div>
 <div class="overlay" id="tbye"><h1 class="px" style="font-size:22px">¡Gracias por jugar!</h1><p>Ya puedes cerrar esta pestaña.</p><button class="btn" id="tb_back">Volver al inicio</button></div>
 <div class="overlay" id="menu" style="display:none">
   <button class="btn sec" id="tohome">Inicio</button>
@@ -482,9 +482,9 @@ function sanitizeSave(o){const num=(v,d)=>typeof v==='number'&&isFinite(v)&&v>=0
   for(const k in o.stats)if(k!=='killsBy'&&typeof o.stats[k]!=='number')o.stats[k]=0;o.stats.killsBy=obj(o.stats.killsBy);
   if(o.keys&&typeof o.keys==='object'){for(const a in o.keys){const v=o.keys[a];if(!Array.isArray(v)||v.length!==2||v.some(x=>x!==null&&(typeof x!=='string'||x.length>14||/[<>&"']/.test(x)&&x.length>1)))delete o.keys[a]}}else o.keys=null;
   o.unlocked.aprendiz=true;o.v=SAVE_VER;return o}
-try{const s=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(s&&typeof s==='object'){const d=defaultSave();SAVE=Object.assign(d,s);SAVE.stats=Object.assign(d.stats,s.stats||{});SAVE.unlocked=Object.assign({aprendiz:true},s.unlocked||{});sanitizeSave(SAVE)}}catch(e){SAVE=defaultSave()}
+try{let s=null;try{s=JSON.parse(localStorage.getItem(SAVE_KEY)||'null')}catch(e){}try{if(window.kageUpdater&&kageUpdater.loadSave){const f=JSON.parse(kageUpdater.loadSave()||'null');if(f&&typeof f==='object'&&(!s||(f.ts||0)>(s.ts||0)))s=f}}catch(e){}if(s&&typeof s==='object'){const d=defaultSave();SAVE=Object.assign(d,s);SAVE.stats=Object.assign(d.stats,s.stats||{});SAVE.unlocked=Object.assign({aprendiz:true},s.unlocked||{});sanitizeSave(SAVE)}}catch(e){SAVE=defaultSave()}
 SAVE.v=SAVE_VER;
-function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVE))}catch(e){}}
+function save(){SAVE.ts=Date.now();const j=JSON.stringify(SAVE);try{localStorage.setItem(SAVE_KEY,j)}catch(e){}try{if(window.kageUpdater&&kageUpdater.writeSave)kageUpdater.writeSave(j)}catch(e){}}
 resize();
 const shopLv=k=>SAVE.shop[k]||0;
 
@@ -1893,9 +1893,10 @@ function showTitle(){titleOn=true;setTimeout(()=>{try{showUpd()}catch(e){}},400)
 function hideTitle(){titleOn=false;$('title').style.display='none'}
 function resetProgress(){const keep={opt:SAVE.opt,keys:SAVE.keys,muted:SAVE.muted};SAVE=Object.assign(defaultSave(),keep);SAVE.v=SAVE_VER;save();KBC=loadKB()}
 $('t_cont').onclick=()=>{sfx('click');hideTitle();showMenu()};
-$('t_new').onclick=()=>{sfx('click');if(hasProgress()){$('tconfirm').style.display='flex';setTimeout(()=>$('tc_no').focus(),30)}else{hideTitle();showMenu()}};
-$('tc_yes').onclick=()=>{resetProgress();$('tconfirm').style.display='none';hideTitle();showMenu();toast('Nueva partida: progreso reiniciado')};
-$('tc_no').onclick=()=>{$('tconfirm').style.display='none';$('t_new').focus()};
+$('t_new').onclick=()=>{sfx('click');if(hasProgress()){const n=CHARS.filter(c=>SAVE.unlocked[c.id]).length,m=1+Object.keys(SAVE.mapsUnl||{}).filter(k=>SAVE.mapsUnl[k]).length;$('tc_sum').textContent=`${n}/8 personajes · ${m} escenarios · ${SAVE.gold} de oro`;$('tc_warn').style.display='none';tcArm=false;$('tconfirm').style.display='flex';setTimeout(()=>$('tc_cont').focus(),30)}else{hideTitle();showMenu()}};
+let tcArm=false;
+$('tc_cont').onclick=()=>{$('tconfirm').style.display='none';hideTitle();showMenu()};
+$('tc_yes').onclick=()=>{if(!tcArm){tcArm=true;$('tc_warn').style.display='block';return}tcArm=false;resetProgress();$('tconfirm').style.display='none';hideTitle();showMenu();toast('Nueva partida: progreso reiniciado')};
 $('t_opts').onclick=()=>{sfx('click');openSettings()};
 $('t_exit').onclick=()=>{sfx('click');try{window.close()}catch(e){}setTimeout(()=>{$('title').style.display='none';$('tbye').style.display='flex'},120)};
 $('tb_back').onclick=()=>{$('tbye').style.display='none';showTitle()};
