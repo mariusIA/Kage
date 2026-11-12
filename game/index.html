@@ -253,7 +253,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <button class="tbtn" id="t_opts">Ajustes</button>
     <button class="tbtn" id="t_exit">Salir</button>
   </div>
-  <div id="tver">v1.1.0</div>
+  <div id="tver">v1.1.1</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -262,7 +262,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
 <div class="overlay" id="tconfirm"><div class="box"><h2 style="margin-top:0">¿Empezar de cero?</h2><p>Se borrará todo tu progreso: oro, mejoras, personajes, maestrías, logros y récords. Tus ajustes y controles se mantienen.</p><div style="display:flex;gap:10px;justify-content:center"><button class="btn" id="tc_yes" style="background:#c8302a;color:#fff">Sí, borrar todo</button><button class="btn sec" id="tc_no">Cancelar</button></div></div></div>
 <div class="overlay" id="tbye"><h1 class="px" style="font-size:22px">¡Gracias por jugar!</h1><p>Ya puedes cerrar esta pestaña.</p><button class="btn" id="tb_back">Volver al inicio</button></div>
 <div class="overlay" id="menu" style="display:none">
-  <button class="btn sec" id="tohome">← Inicio</button>
+  <button class="btn sec" id="tohome">Inicio</button>
   <h1 class="title">KAGE</h1>
   <div class="goldtag px"><span id="mcoin"></span> <span id="mgold">0</span></div>
   <div class="tabs">
@@ -1107,7 +1107,7 @@ function update(dt){
   if(held('up'))my--;if(held('down'))my++;if(held('left'))mx--;if(held('right'))mx++;
   const ml=Math.hypot(mx,my);if(ml){mx/=ml;my/=ml}
   if(joy){const dx=joy.x-joy.ox,dy=joy.y-joy.oy,d=Math.hypot(dx,dy);if(d>6){const k=Math.min(1,d/45);mx=dx/d*k;my=dy/d*k}}
-  {const k=Math.hypot(mx,my);if(k){const w=s2w(mx,my),l=Math.hypot(w[0],w[1]);mx=w[0]/l*k;my=w[1]/l*k}}
+  {const k=Math.hypot(mx,my);if(k){const w=s2w(mx,my);mx=w[0];my=w[1]}}
   if(S.dash.chg<S.dash.max){S.dash.cd-=dt;if(S.dash.cd<=0){S.dash.chg++;if(S.dash.chg<S.dash.max)S.dash.cd=st.dashCd}}S.inDir=[mx,my];
   if(S.dash.t>0){S.dash.t-=dt;p.x+=S.dash.dx*st.speed*3.6*st.dashLen*dt;p.y+=S.dash.dy*st.speed*3.6*st.dashLen*dt;p.iframe=Math.max(p.iframe,0.12);p.moving=true;if(Math.random()<0.9)S.trail.push({x:p.x,y:p.y,life:0.25})}
   else{p.x+=mx*st.speed*dt;p.y+=my*st.speed*dt;p.moving=!!(mx||my)}
@@ -1296,7 +1296,7 @@ function misHud(){const el=$('mission_hud'),m=S.mis;if(!m||!S.running){el.style.
 
 function banner(t,l){S.banner={text:t,life:l||2.5}}
 function tryDash(){if(!S||!S.running||S.modal||S.dash.chg<1||S.dash.t>0)return;let mx=S.inDir?S.inDir[0]:0,my=S.inDir?S.inDir[1]:0;if(!mx&&!my){mx=S.p.fx;my=S.p.fy}
-  const l=Math.hypot(mx,my)||1;S.dash.dx=mx/l;S.dash.dy=my/l;S.dash.t=0.2;if(S.dash.chg>=S.dash.max)S.dash.cd=S.st.dashCd;S.dash.chg--;S.dashes++;sfx('dash');
+  const l=Math.hypot(mx,my)||1;mx/=l;my/=l;const sl=Math.hypot(IC*(mx-my),0.5*IC*(mx+my))||1;S.dash.dx=mx/sl;S.dash.dy=my/sl;S.dash.t=0.2;if(S.dash.chg>=S.dash.max)S.dash.cd=S.st.dashCd;S.dash.chg--;S.dashes++;sfx('dash');
   if(mKey()==='k_sombra'){SRC='maestria';for(let i=0;i<8;i++)shoot(S.p.x,S.p.y,i/8*TAU,520,20*S.st.might,2,'magic',5,0.9)}}
 function useUlt(){if(!S||!S.running||S.modal||S.ult<1)return;S.ult=0;S.ults++;let id=S.ch.id;if(id==='errante')id=pick(Object.keys(ULTS).filter(k=>k!=='errante'));
   doUlt(id);if(mKey()==='k_monje')S.p.hp=Math.min(S.p.maxhp,S.p.hp+25);banner(ULTS[id].name,2.5);sfx('evo');S.flash=0.25}

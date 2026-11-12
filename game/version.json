@@ -1,9 +1,11 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "file": "game/index.html",
-  "sha256": "8bb5dac4c49063de8c4cbe7f92beae39f660f4568d23c50dd02ae080493443ef",
+  "sha256": "6fd38cae9cb7a0569c0a77856b55ec6082e5627391f6cf6071fd0a0fd73c6ae4",
   "minShell": 1,
   "notes": [
-    "Actualizaciones automáticas: a partir de ahora el juego se actualiza solo al abrirlo"
+    "El ninja se mueve igual de rápido en todas las direcciones (antes iba más lento hacia arriba y hacia abajo)",
+    "El dash también recorre lo mismo en todas las direcciones",
+    "Quitada la flecha del botón Inicio del menú"
   ]
 }
