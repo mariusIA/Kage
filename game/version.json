@@ -1,11 +1,12 @@
 {
-  "version": "1.5.3",
+  "version": "1.6.0",
   "file": "game/index.html",
-  "sha256": "d3d167cefa479755968e498d27a692c5e6e584da77c314d666e89fb9ee24bc4b",
+  "sha256": "5fd2300be278c9163ab3df38032c0253b9b54104bb14820436cc615682a3af84",
   "minShell": 1,
   "notes": [
-    "Los enemigos ya no se quedan blancos con muchos golpes seguidos",
-    "Kama más pequeña",
-    "Cristales de experiencia con menos brillo"
+    "¡Nuevo modo cooperativo online para 2 jugadores, cada uno en su PC!",
+    "Botón Cooperativo en la pantalla de inicio: crea una sala y pásale el código a tu amigo",
+    "Experiencia compartida, cada uno elige sus mejoras y podéis revivir al compañero caído",
+    "Los dos ganáis el oro y los desbloqueos de la partida"
   ]
 }

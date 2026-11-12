@@ -1,7 +1,7 @@
 # Arquitectura
 
 ## Archivo único
-Todo el juego está en `game/index.html` (HTML + CSS + JS, Canvas 2D, sin dependencias ni paso de compilación). La fuente pixel *Press Start 2P* va incrustada en base64.
+Todo el juego está en `game/index.html` (HTML + CSS + JS, Canvas 2D, sin paso de compilación). La única librería es PeerJS 1.5.5 (red del cooperativo), incrustada en su propio `<script>`. La fuente pixel *Press Start 2P* va incrustada en base64.
 
 Secciones del script (buscar `// =============== NOMBRE`):
 
@@ -26,12 +26,14 @@ Secciones del script (buscar `// =============== NOMBRE`):
 | PANTALLA DE INICIO | `showTitle()`, introducción, diálogo de Nueva partida |
 | ACTUALIZACIONES | Diálogo "Nueva versión disponible" (solo en la app) |
 | NOTAS DEL PARCHE | `GAME_VERSION`, `PATCH` (nuevo/fix/buff/nerf) y ventana de la pantalla de inicio |
+| COOPERATIVO: NÚCLEO | `PF`, `useP()`, `coopAlive()`, `coopTarget()`, `coopHurt()`, `downStep()`, `coopLevelTick()` |
+| COOPERATIVO ONLINE | `NET`, sala (`openCoop`, `coopHost`, `coopJoin`, `renderRoom`, `roomSync`), `netSnap()`, `guestSnap()`, `guestUpdate()`, `guestEnd()` (ver [cooperativo.md](cooperativo.md)) |
 | EVENTOS ALEATORIOS | `evTick()`, mercader (`openMerchant`), santuario (`S.shrineB`), luna de sangre (`S.bloodT`) |
 | MALDICIONES | `CURSES`, `curseOn()`, `curseBonus()` |
 | DESAFÍOS Y ASPECTOS | `CHAL`, `ninjaSpr()`, `applySkins()` |
 
 ## Estado
-- `S`: la partida en curso (`null` en menús). `S.running`, `S.modal` (`levelup`, `chest`, `mission`, `victory`, `pause`, `settings`…). Mientras hay `S.modal`, `update()` no avanza.
+- `S`: la partida en curso (`null` en menús). `S.running`, `S.modal` (`levelup`, `chest`, `mission`, `victory`, `pause`, `settings`, `coopwait`…). Mientras hay `S.modal`, `update()` no avanza.
 - `SAVE`: progreso persistente. Campos nuevos: `mpath` (senda), `evoSeen` (evoluciones descubiertas), `skins`/`skinOn` (aspectos), `curses` (maldiciones elegidas), `seenPatch` (notas del parche vistas).
 - Maestrías: `mLvRaw()` = puntos invertidos (para la interfaz); `mLv()` / `mKey()` = efecto real, solo de la senda activa `SAVE.mpath`.
 - `S.st`: estadísticas calculadas (`calcStats()`), recalculadas cada 0,1 s o al marcar `S.stDirty`.

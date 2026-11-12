@@ -3,6 +3,9 @@
 ## Pantalla de inicio
 Al abrir el juego tras una actualización sale la ventana **Notas del parche** (novedades, correcciones, buffs y nerfs). Al cerrarla aparece la introducción; se puede volver a abrir con el botón **Novedades** (abajo a la izquierda).
 
+## Cooperativo
+Se puede jugar con un amigo online, cada uno en su PC, desde el botón **Cooperativo** de la pantalla de inicio: ver [cooperativo.md](cooperativo.md).
+
 ## Objetivo
 Elegir un ninja, **sobrevivir 8 minutos** a las hordas de yokai y **vencer al Shinigami**: derrotándolo o **resistiendo 1:30** contra él (cuenta atrás en su barra de vida). Al ganar se puede seguir en **modo infinito** o terminar.
 

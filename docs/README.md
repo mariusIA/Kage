@@ -7,7 +7,8 @@ Documentación **viva** del juego: se actualiza en el mismo commit que cada camb
 | [jugabilidad.md](jugabilidad.md) | Cómo se juega: ritmo de la partida, victoria, misiones, cofres, modo infinito, reto diario, controles. |
 | [contenido.md](contenido.md) | Tablas de personajes, armas, objetos, reliquias, maestrías, tienda, dificultades, escenarios, jefes y logros. |
 | [arquitectura.md](arquitectura.md) | Cómo está hecho el código: secciones, estado, guardado, vista isométrica, rendimiento, actualizaciones. |
+| [cooperativo.md](cooperativo.md) | Modo cooperativo online para 2 jugadores: reglas, red y pruebas. |
 | [publicacion.md](publicacion.md) | Cómo publicar una versión del juego y cómo rehacer el programa de Windows. |
 | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones. |
 
-Versión documentada: **1.5.3**.
+Versión documentada: **1.6.0**.

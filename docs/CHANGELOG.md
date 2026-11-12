@@ -1,5 +1,12 @@
 # Historial de versiones
 
+## 1.6.0
+- **Modo cooperativo online** para 2 jugadores, cada uno desde su PC, desde el botón **Cooperativo** de la pantalla de inicio: pantalla de **sala** con código, los dos puestos de jugador, elección de ninja, escenario, dificultad y maldiciones, y botón "Estoy listo" (ver [cooperativo.md](cooperativo.md)).
+- Experiencia compartida, build propia para cada jugador, cofres de quien los recoge y pausa compartida al elegir.
+- Revivir al compañero caído quedándose 3 s a su lado; la partida se pierde si caen los dos.
+- Los dos ganan el oro de la partida y los desbloqueos al ganar.
+- Por dentro: `update()` dividido en `playerStep()` y el mundo; contexto por jugador con `useP()`; PeerJS 1.5.5 incrustado.
+
 ## 1.5.3
 - Cristales de experiencia con menos brillo (halo más suave y menos destellos).
 - Los enemigos ya no se quedan blancos al recibir muchos golpes seguidos (sobre todo con la Lluvia de Kunai): el destello de golpe tiene un tiempo de espera.

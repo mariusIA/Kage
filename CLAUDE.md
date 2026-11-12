@@ -6,7 +6,7 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
 
 | Path | What it is |
 |---|---|
-| `game/index.html` | **The whole game** in a single HTML/CSS/JS file (Canvas 2D), about 1,950 lines and about 180 KB. It has no build step and no dependencies. The pixel font (Press Start 2P) is embedded in base64. |
+| `game/index.html` | **The whole game** in a single HTML/CSS/JS file (Canvas 2D), about 2,500 lines and about 380 KB. It has no build step; the only library is PeerJS (online co-op), embedded inline. The pixel font (Press Start 2P) is embedded in base64. |
 | `game/version.json` | The published version. The Windows app reads it to update itself. Fields: `version`, `file`, `sha256`, `minShell`, `notes` (in Spanish, for players). |
 | `app/` | Windows shell (Electron 45): `main.js` (window, updater, file-based save), `preload.js` (exposes `window.kageUpdater`), `package.json`, `icon.png`. |
 | `launcher/launcher.c` | Small `Kage.exe` launcher for the zip's main folder. It opens `archivos\Kage.exe`. |
@@ -39,10 +39,11 @@ Survivors-like game (in the style of Vampire Survivors) with a ninja theme and a
   - load `file://…/game/index.html`;
   - drive the game through its globals (`startGame(i)`, `update(dt)`, `S`, `SAVE`, `openChest()`, `misStart()`…);
   - take screenshots.
+- Online co-op: run a local PeerJS server (`npm i peer` in /tmp, `PeerServer({port:9000,path:'/',host:'127.0.0.1'})`), set `window.KAGE_PEER={host:'127.0.0.1',port:9000,path:'/',secure:false,config:{iceServers:[]}}` with an init script, and drive two Playwright contexts (host `coopHost()`, guest `coopJoin()`). See `docs/cooperativo.md`.
 - Electron doesn't start in this container (xvfb/zygote), so the shell can't be tested here. Check it with `node --check`.
 
 ## Game architecture (`game/index.html`)
-- The code is split into sections marked `// =============== NAME ===============`: GUARDADO, SONIDO, MÚSICA, SPRITES, DATOS (personajes/armas/enemigos), RELIQUIAS, MAESTRÍAS, ENTRADA, ESTADO, MAPA, ENEMIGOS, COMBATE, UPDATE, MISIONES, SUBIR DE NIVEL Y COFRES, PAUSA/FIN, MENÚ, DIBUJO, BUCLE, PANTALLA DE INICIO, ACTUALIZACIONES, NOTAS DEL PARCHE, EVENTOS ALEATORIOS, MALDICIONES, DESAFÍOS Y ASPECTOS.
+- The code is split into sections marked `// =============== NAME ===============`: GUARDADO, SONIDO, MÚSICA, SPRITES, DATOS (personajes/armas/enemigos), RELIQUIAS, MAESTRÍAS, ENTRADA, ESTADO, MAPA, ENEMIGOS, COMBATE, UPDATE, MISIONES, SUBIR DE NIVEL Y COFRES, PAUSA/FIN, MENÚ, DIBUJO, BUCLE, PANTALLA DE INICIO, ACTUALIZACIONES, NOTAS DEL PARCHE, EVENTOS ALEATORIOS, MALDICIONES, DESAFÍOS Y ASPECTOS, plus COOPERATIVO: NÚCLEO and COOPERATIVO ONLINE (before EVENTOS ALEATORIOS). PeerJS 1.5.5 is embedded in its own `<script>` before the game script.
 - **Global state:** `S` is the current run (`null` in menus) and `SAVE` is the persistent progress.
 - **Saving:**
   - `save()` writes `localStorage['surv_save_v2']`, plus `kageUpdater.writeSave()` in the app (file `%APPDATA%\Kage\partida.json`).
