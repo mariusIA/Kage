@@ -1,10 +1,13 @@
 {
-  "version": "1.1.2",
+  "version": "1.2.0",
   "file": "game/index.html",
-  "sha256": "233ffe10ff765e6b3b1e445e2b2f2fce7652103be1572135127529c9fa5d744c",
+  "sha256": "28b5e4a4ee91f61c4fafff49db351fc5594f84437c30b8f76dc42d9361085bc8",
   "minShell": 1,
   "notes": [
-    "Nueva ventana en la pantalla de inicio con la historia del juego (\"La leyenda de Kage\")",
-    "Se puede cerrar con la X y volver a abrir con el botón ?"
+    "Las partidas duran 8 minutos (antes 10); se gana más experiencia para compensar",
+    "Con la build completa, los élites casi no sueltan cofres (sueltan oro y experiencia)",
+    "Los ninjas se mueven un poco más despacio",
+    "Quitado el botón del altavoz de abajo a la derecha",
+    "Aldea Oculta, 'Resistente' y 'Disciplina' piden ahora 6 minutos"
   ]
 }
