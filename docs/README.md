@@ -11,4 +11,4 @@ Documentación **viva** del juego: se actualiza en el mismo commit que cada camb
 | [publicacion.md](publicacion.md) | Cómo publicar una versión del juego y cómo rehacer el programa de Windows. |
 | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones. |
 
-Versión documentada: **1.6.2**.
+Versión documentada: **1.7.0**.

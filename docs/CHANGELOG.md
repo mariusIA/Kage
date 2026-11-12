@@ -1,5 +1,10 @@
 # Historial de versiones
 
+## 1.7.0
+- **Tienda de cosméticos** (Tienda → pestaña **Cosméticos**): estelas del dash, efectos al derrotar enemigos, auras, color del nombre y títulos (estos dos solo se ven en cooperativo). Solo visuales. Vista previa animada; pasar el ratón por un cosmético lo prueba.
+- En cooperativo los cosméticos de cada jugador se envían a los demás (sala, partida y efectos al derrotar).
+- Corregido: el ninja caído en cooperativo se dibujaba como silueta blanca.
+
 ## 1.6.2
 - Notas del parche acumuladas: quien actualiza desde una versión antigua ve todas las versiones que se ha perdido (desde su `SAVE.seenPatch`; si no tiene, todas). Quien instala de cero no ve ninguna. El botón **Novedades** muestra el historial completo.
 - Las notas pasan a `PATCHES` (lista de versiones, la más nueva primero); `PATCH` es `PATCHES[0]`.

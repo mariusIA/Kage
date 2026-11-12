@@ -28,13 +28,14 @@ Secciones del script (buscar `// =============== NOMBRE`):
 | NOTAS DEL PARCHE | `GAME_VERSION`, `PATCHES` (historial, la versión más nueva primero; `PATCH = PATCHES[0]`), `unseenPatches()` (las posteriores a `SAVE.seenPatch`), `vcmp()` y ventana de la pantalla de inicio |
 | COOPERATIVO: NÚCLEO | `PF`, `useP()`, `coopAlive()`, `coopTarget()`, `coopHurt()`, `downStep()`, `coopLevelTick()` |
 | COOPERATIVO ONLINE | `NET` (hasta 4 jugadores: `NET.guests`, `sendP()`), sala (`openCoop`, `coopHost`, `coopJoin`, `renderRoom`, `roomSync`), `netSnap()`, `guestSnap()`, `guestUpdate()`, `guestEnd()` (ver [cooperativo.md](cooperativo.md)) |
+| COSMÉTICOS | `COSM_CAT`, `COSM`, `cosEq()`, `cosClean()`, partículas `S.cfx` (`cosTrailAt`, `cosKillAt`, `cfxStep`, `cfxDraw`, `cfxRender`), `auraDraw()`, tienda `renderCosm()` y vista previa `startCosPrev()` |
 | EVENTOS ALEATORIOS | `evTick()`, mercader (`openMerchant`), santuario (`S.shrineB`), luna de sangre (`S.bloodT`) |
 | MALDICIONES | `CURSES`, `curseOn()`, `curseBonus()` |
 | DESAFÍOS Y ASPECTOS | `CHAL`, `ninjaSpr()`, `applySkins()` |
 
 ## Estado
 - `S`: la partida en curso (`null` en menús). `S.running`, `S.modal` (`levelup`, `chest`, `mission`, `victory`, `pause`, `settings`, `coopwait`…). Mientras hay `S.modal`, `update()` no avanza.
-- `SAVE`: progreso persistente. Campos nuevos: `mpath` (senda), `evoSeen` (evoluciones descubiertas), `skins`/`skinOn` (aspectos), `curses` (maldiciones elegidas), `seenPatch` (notas del parche vistas), `name` (nombre en el cooperativo).
+- `SAVE`: progreso persistente. Campos nuevos: `mpath` (senda), `evoSeen` (evoluciones descubiertas), `skins`/`skinOn` (aspectos), `curses` (maldiciones elegidas), `seenPatch` (notas del parche vistas), `name` (nombre en el cooperativo), `cosm` (`own`: cosméticos comprados como `'trail.sakura'`; `on`: el puesto de cada categoría).
 - Maestrías: `mLvRaw()` = puntos invertidos (para la interfaz); `mLv()` / `mKey()` = efecto real, solo de la senda activa `SAVE.mpath`.
 - `S.st`: estadísticas calculadas (`calcStats()`), recalculadas cada 0,1 s o al marcar `S.stDirty`.
 

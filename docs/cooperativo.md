@@ -31,6 +31,7 @@ Modo para **2 a 4 jugadores, cada uno desde su PC** (app de Windows o navegador)
 - Al empezar, los jugadores se ordenan (anfitrión primero) y cada uno recibe su índice en `{t:'start', me, pl}`; en la partida cada jugador tiene su conexión en `S.players[i].conn` y el anfitrión le escribe con `sendP(i, m)`.
 - **Cada invitado** mueve a su ninja en local (`guestUpdate`) y manda su posición unas 30 veces por segundo (`{t:'in'}`), además del dash, la técnica especial (`ult`) y sus elecciones (`pick`, `cpick`, `cskip`).
 - **El anfitrión** manda a cada invitado una "foto" del estado cada 50 ms (`netSnap`, `{t:'s'}`): todos los jugadores, enemigos cercanos a ese invitado, proyectiles, objetos, charcos, efectos, números de daño, jefe, misión, eventos y la build del invitado. El invitado interpola las posiciones (`guestSnap`).
+- Cosméticos: cada jugador manda los suyos en `hello` (`cos`), van en la sala (`pl`) y en `start`; en la partida son `S.cos` (campo de jugador en `PF`). La foto incluye si cada jugador hace dash (para dibujar su estela) y `KF`, los efectos al derrotar cercanos `[x, y, efecto]`.
 - Avisos: `banner()` es del mundo (lo ven todos); `pbanner()` es personal (solo lo ve el jugador al que le pasa).
 - Al acabar, el anfitrión manda `{t:'end', won, gold}` y el invitado guarda su oro, estadísticas y desbloqueos en su propio `SAVE` (`guestEnd`).
 

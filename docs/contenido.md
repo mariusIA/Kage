@@ -182,3 +182,16 @@ Opcionales, se eligen bajo la dificultad. Suman su bonificación al **oro** y a 
 
 ## Bestiario
 Pestaña del menú con los 15 yokai (10 normales y 5 jefes): nombre, descripción y cuántos has derrotado. Los no derrotados salen como silueta. Estrellas a 1, 100 y 1.000 derrotados.
+
+## Cosméticos
+Tienda → **Cosméticos**. Solo visuales, no dan ventaja. Se compran una vez con oro y luego se ponen o quitan cuando quieras (uno por categoría). Datos en `COSM` (sección COSMÉTICOS).
+
+| Categoría | Cosméticos (precio en oro) |
+|---|---|
+| Estelas del dash | Pétalos de sakura 8.000 · Humo negro 8.000 · Gotas de tinta 10.000 · Rayos 12.000 · Fuego azul 15.000 |
+| Efectos al derrotar (enemigos que derrotas tú) | Lluvia de pétalos 8.000 · Salpicadura de tinta 10.000 · Chispas doradas 12.000 · Almas que suben 15.000 |
+| Auras (bajo los pies) | Niebla roja 12.000 · Círculo de runas 15.000 · Sombra del Shinigami 40.000 |
+| Color del nombre (solo cooperativo) | Jade, Sakura, Cielo, Fuego, Violeta 3.000 cada uno · Oro brillante 20.000 |
+| Títulos (solo cooperativo) | Sombra de Kage 5.000 · Cazador de Oni 5.000 · Sin miedo 5.000 · Maestro yokai 8.000 · Leyenda de Kage 50.000 |
+
+Los trajes de los desafíos no se venden (siguen siendo premio de los desafíos) y no hay cajas sorpresa.
