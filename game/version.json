@@ -1,13 +1,12 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "file": "game/index.html",
-  "sha256": "28b5e4a4ee91f61c4fafff49db351fc5594f84437c30b8f76dc42d9361085bc8",
+  "sha256": "32353754cbe1c7189258c97c1372674659f17e131a72bc6bc3e68c1a95477940",
   "minShell": 1,
   "notes": [
-    "Las partidas duran 8 minutos (antes 10); se gana más experiencia para compensar",
-    "Con la build completa, los élites casi no sueltan cofres (sueltan oro y experiencia)",
-    "Los ninjas se mueven un poco más despacio",
-    "Quitado el botón del altavoz de abajo a la derecha",
-    "Aldea Oculta, 'Resistente' y 'Disciplina' piden ahora 6 minutos"
+    "Al llegar el Shinigami puedes ganar derrotándolo o resistiendo 1:30 contra él (la cuenta atrás sale en su barra de vida)",
+    "Arreglado: salir desde la pausa en modo infinito ya cuenta como victoria",
+    "Arreglado: durante la celebración de la victoria ya no te pueden matar",
+    "Quitado del todo el botón del altavoz"
   ]
 }
