@@ -1,12 +1,11 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2",
   "file": "game/index.html",
-  "sha256": "32353754cbe1c7189258c97c1372674659f17e131a72bc6bc3e68c1a95477940",
+  "sha256": "00b88485249325a03cd0ed8f05cf625e0ed5f9152215442ff7bbbbd4fa9eb8c7",
   "minShell": 1,
   "notes": [
-    "Al llegar el Shinigami puedes ganar derrotándolo o resistiendo 1:30 contra él (la cuenta atrás sale en su barra de vida)",
-    "Arreglado: salir desde la pausa en modo infinito ya cuenta como victoria",
-    "Arreglado: durante la celebración de la victoria ya no te pueden matar",
-    "Quitado del todo el botón del altavoz"
+    "Con la build completa ya no salen cofres: los élites sueltan una bolsa de oro más grande",
+    "Si coges un cofre con la build completa, se convierte en oro al momento (y a veces en una reliquia), sin ventana de elegir",
+    "Las misiones ya no ofrecen cofre si tienes la build completa"
   ]
 }

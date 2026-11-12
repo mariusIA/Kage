@@ -271,7 +271,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
     <p class="ti_how">Tú solo te mueves: tus armas atacan solas. Recoge experiencia, elige mejoras y combina armas para hacerlas evolucionar.</p>
   </div>
   <button id="ti_open" aria-label="Historia">?</button>
-  <div id="tver">v1.2.1</div>
+  <div id="tver">v1.2.2</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -1057,7 +1057,7 @@ function kill(e){
   if(e.xp)addGem(e.x,e.y,e.xp);
   if(Math.random()<0.006*S.st.luck)drop(e.x+rnd(-8,8),e.y+rnd(-8,8),'coin',1);
   if(e.type==='slime')for(let i=0;i<2;i++)addEnemy('slimelet',e.x+rnd(-12,12),e.y+rnd(-12,12));
-  if(e.elite&&!e.mark){if((!e.finale||Math.random()<0.12)&&(!buildDone()||Math.random()<0.15))drop(e.x,e.y,'chest');else{drop(e.x,e.y,'bag',ri(4,9));for(let i=0;i<3;i++)addGem(e.x+rnd(-20,20),e.y+rnd(-20,20),5)}}
+  if(e.elite&&!e.mark){if((!e.finale||Math.random()<0.12)&&!buildDone())drop(e.x,e.y,'chest');else{drop(e.x,e.y,'bag',buildDone()?ri(20,40):ri(4,9));for(let i=0;i<3;i++)addGem(e.x+rnd(-20,20),e.y+rnd(-20,20),5)}}
   if(e.T.boss){
     S.bossKills++;if(S.boss===e)S.boss=null;sfx('boom');S.shake=16;S.flash=0.5;
     drop(e.x,e.y,'chest');drop(e.x+34,e.y,'bag',50);for(let i=0;i<14;i++)addGem(e.x+rnd(-70,70),e.y+rnd(-70,70),10);
@@ -1274,7 +1274,7 @@ function misEnd(ok){
   if(!ok){banner('Misión fallida',2.5);if(S.dname==='dificil'||S.dname==='imposible'){const e=spawnAround(wpick(mix(Math.floor(gt()/60)).filter(a=>a[0]!=='bat')),undefined,true);banner('Misión fallida: ¡te persigue un élite!',3)}sfx('hurt');return}
   S.misDone=(S.misDone||0)+1;sfx('evo');parts(S.p.x,S.p.y,'#ffd23a',30,220);
   const g=Math.round((40+gt()/4)*S.st.greed*S.D.gold);
-  let o=[{t:'mchest'},{t:'mgold',v:g},{t:'mult'},{t:'mheal'}];
+  let o=[...(buildDone()?[]:[{t:'mchest'}]),{t:'mgold',v:g},{t:'mult'},{t:'mheal'}];
   if(S.daily){o=o.sort((a,b)=>hash(S.misN,a.t.length,S.seed)-hash(S.misN,b.t.length,S.seed))}else o.sort(()=>Math.random()-0.5);
   o=o.slice(0,3);const free=Object.keys(RELICS).filter(k=>!S.relics[k]);if(m.hard&&free.length)o[2]={t:'relic',k:pick(free)};
   S.misOpts=o;S.misName=m.name;S.modal='mission';renderMis();$('mission').style.display='flex';
@@ -1476,6 +1476,8 @@ function chestOptions(){
   return out.slice(0,5);
 }
 function openChest(){
+  if(buildDone()){const g=Math.round((ri(15,35)+40+gt()/12)*S.st.greed*S.D.gold);S.gold+=g;sfx('coin');txtAt(S.p.x,S.p.y,'+'+g+' oro','#ffd23a');parts(S.p.x,S.p.y,'#ffd23a',18,180);
+    const free=Object.keys(RELICS).filter(k=>!S.relics[k]);if(free.length&&Math.random()<0.2){const k=pick(free);S.relics[k]=true;S.stDirty=true;if(k==='mascara'){S.p.maxhp=calcMaxHp();S.p.hp=Math.min(S.p.hp,S.p.maxhp)}banner('Reliquia: '+RELICS[k].name,3);updateBuild()}return}
   S.modal='chest';sfx('chest');S.chestPicks=Math.random()<0.15*S.st.luck?3:1;
   const g=Math.round(ri(15,35)*S.st.greed*S.D.gold);S.gold+=g;S.chestGold=g;
   S.chestOpts=chestOptions();renderChest();$('chest').style.display='flex';
