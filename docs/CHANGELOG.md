@@ -1,5 +1,9 @@
 # Historial de versiones
 
+## 1.7.3
+- Corregido: el `dt` del bucle podía salir negativo justo después de cerrar una ventana (se pone `last=performance.now()`, posterior al `now` del fotograma); ahora `dt` nunca es negativo. Con `dt` negativo el tiempo retrocedía y `S.flash` (destello blanco) crecía.
+- Corregido: el dibujo del tajo de la Katana podía lanzar un error (radio negativo) y dejar ese fotograma en blanco; ahora el radio se limita.
+
 ## 1.7.2
 - Barra de desplazamiento de las notas del parche con el estilo del juego: fina, sin flechas ni fondo, degradado dorado-rojo (`::-webkit-scrollbar`; en Firefox `scrollbar-color`).
 

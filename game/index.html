@@ -440,7 +440,7 @@ kbd{display:inline-block;min-width:16px;text-align:center;background:#2a2f40;bor
   <button id="ti_open" aria-label="Historia">?</button>
   </div>
   <button id="tp_open" aria-label="Notas del parche">Novedades</button>
-  <div id="tver">v1.7.2</div>
+  <div id="tver">v1.7.3</div>
 </div>
 <div class="overlay" id="upd"><div class="box" style="background:var(--panel);border:2px solid var(--gold);border-left:6px solid var(--red);border-radius:10px;padding:22px 26px;max-width:460px;text-align:left">
   <h2 style="margin:0 0 6px">¡Nueva versión disponible!</h2><div class="osub" id="upd_v"></div><ul id="upd_n" style="margin:12px 0 16px;padding-left:18px;font-size:14px;line-height:1.5"></ul>
@@ -2553,7 +2553,7 @@ function render(dt){
     if(!e.T.ghost){circle(e.x,e.y,e.r*0.95);ctx.fill()}}
   circle(p.x,p.y,13);ctx.fill();
   if(S.wp.orbs){const w=S.wp.orbs,s=WD.orbs.stat(w.l,w.evo),R=s.R*S.st.area,sz=s.size*S.st.area;for(let i=0;i<s.n;i++){const a=(w.ang||0)+i*TAU/s.n;circle(p.x+Math.cos(a)*R,p.y+Math.sin(a)*R,sz*0.8);ctx.fill()}}
-  for(const f of S.fx){if(f.k==='slash'){const a=f.life/0.2,R=f.R*(1.05-a*0.25);ctx.save();ctx.globalAlpha=Math.min(1,a*1.6);
+  for(const f of S.fx){if(f.k==='slash'){const a=Math.max(0,Math.min(1,f.life/0.2)),R=Math.max(2,(+f.R||0)*(1.05-a*0.25));if(!isFinite(R)||!isFinite(f.x)||!isFinite(f.y))continue;ctx.save();ctx.globalAlpha=Math.min(1,a*1.6);
       const g=ctx.createRadialGradient(f.x,f.y,R*0.35,f.x,f.y,R);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(0.75,f.evo?'rgba(255,230,120,.35)':'rgba(220,235,255,.28)');g.addColorStop(1,f.evo?'rgba(255,250,200,.85)':'rgba(255,255,255,.8)');
       ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(f.x,f.y);ctx.arc(f.x,f.y,R,f.a-f.arc/2,f.a+f.arc/2);ctx.closePath();ctx.fill();
       ctx.strokeStyle=f.evo?'#fff2a0':'#ffffff';ctx.lineWidth=f.evo?5:3.5;ctx.beginPath();ctx.arc(f.x,f.y,R,f.a-f.arc/2*(1-a*0.3),f.a+f.arc/2*(1-a*0.3));ctx.stroke();ctx.restore();continue}
@@ -2658,7 +2658,8 @@ let lastDraw=0,fpsV=0,fpsAcc=0,fpsN=0;
 function frame(now){
   const lim=OPT().fps;if(lim&&now-lastDraw<1000/lim-1.5){requestAnimationFrame(frame);return}
   fpsAcc+=now-lastDraw;fpsN++;if(fpsAcc>=500){fpsV=Math.round(fpsN*1000/fpsAcc);fpsAcc=0;fpsN=0}lastDraw=now;
-  const dt=Math.min(0.05,(now-last)/1000);last=now;
+  // nunca negativo: tras cerrar una ventana se pone last=performance.now(), que puede ser posterior al 'now' del fotograma
+  const dt=Math.max(0,Math.min(0.05,(now-last)/1000));last=now;
   if(S&&S.guest){if(S.running){try{guestUpdate(dt)}catch(err){console.error(err)}}}
   else if(S&&S.running&&!S.modal){try{update(dt)}catch(err){console.error(err)}}
   if(S&&S.coop&&!S.guest&&S.running){NET.hostT=(NET.hostT||0)-dt;if(NET.hostT<=0){NET.hostT=0.05;try{netSnap()}catch(err){console.error(err)}}}
@@ -2715,10 +2716,11 @@ if(window.kageUpdater){
 
 // =============== NOTAS DEL PARCHE ===============
 // Al publicar una versión: subir GAME_VERSION y escribir sus notas aquí (nuevo / fix / buff / nerf).
-const GAME_VERSION='1.7.2';
+const GAME_VERSION='1.7.3';
 // Historial de notas, de la más nueva a la más antigua. Quien actualiza desde una versión vieja ve todas
 // las que se ha perdido; quien instala el juego de cero no ve ninguna (ver showTitle).
 const PATCHES=[
+  {v:'1.7.3',fix:['Al cerrar una ventana (mejora, cofre…) el tiempo de la partida ya no puede ir hacia atrás un instante, lo que a veces causaba destellos blancos o saltos','El tajo de la Katana ya no puede hacer que la pantalla se quede en blanco']},
   {v:'1.7.2',fix:['La barra para desplazarse por las notas del parche es más fina y va a juego con el estilo del juego']},
   {v:'1.7.1',fix:['Las notas del parche salen encima de la leyenda de Kage, sin taparla']},
   {v:'1.7.0',nuevo:['Tienda de cosméticos (Tienda → Cosméticos): gasta el oro que te sobra en estelas del dash, efectos al derrotar enemigos, auras, color del nombre y títulos',

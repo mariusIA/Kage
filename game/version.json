@@ -1,9 +1,9 @@
 {
-  "version": "1.7.2",
+  "version": "1.7.3",
   "file": "game/index.html",
-  "sha256": "4e11b036dff1937f6e47f86b31d4ef72a918b361b2a1f6d2b19bac11b7b38c8e",
+  "sha256": "f90300957340440fca75fe07368119c6e7d59bcfcce45296db09ffd6307c2fc7",
   "minShell": 1,
   "notes": [
-    "La barra para desplazarse por las notas del parche va a juego con el estilo del juego"
+    "Arreglados unos destellos blancos y saltos de tiempo que podían aparecer al cerrar ventanas o con la Katana"
   ]
 }
